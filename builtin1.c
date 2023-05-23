@@ -1,9 +1,11 @@
 #include "shell.h"
 /**
-* _myhistory - show the history list, one command per line, start
-* with line numbers, commencing at 0.
-* @info: Structure containing the potential arguments
-* Return: Always if true 0
+* _myhistory - display the history files by displaying
+* one command per line at start
+* with line numbers, starting  at 0.
+*
+* @info: Structure curring the possible disagreement
+* Return: if true 0
 */
 int _myhistory(info_t *info)
 {
@@ -11,10 +13,11 @@ print_list(info->history);
 return (0);
 }
 /**
-* unset_alias - assign alias to string
-* @info: parameter structure structure
-* @str: the string assigned alias
-* Return: Always 0 on successful, then 1 on error
+* unset_alias - alias will be assigned to the string
+*
+* @info: framework structure
+* @str: assigned alias string
+* Return: 0 on successful, then 1 on error
 */
 int unset_alias(info_t *info, char *str)
 {
@@ -31,10 +34,11 @@ get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 return (ret);
 }
 /**
-* set_alias - assigns alias to string
-* @info: parameter structure
-* @str: the string assigned alias
-* Return: Always 0 on successful, then 1 on error
+* set_alias - alias will be assinged to a string
+*
+* @info: frame structure
+* @str: assigned alias string
+* Return: 0 on successful, 1 on error
 */
 int set_alias(info_t *info, char *str)
 {
@@ -48,9 +52,10 @@ unset_alias(info, str);
 return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 /**
-* print_alias - print out alias string
-* @node: alias node node
-* Return: Always if true 0 on success, then 1 on error
+* print_alias - alias string to be printed
+*
+* @node: alias node
+* Return: if true 0 on success, 1 on error
 */
 int print_alias(list_t *node)
 {
@@ -68,8 +73,10 @@ return (0);
 return (1);
 }
 /**
-* _myalias - copies characteristics of alias builtin - man alias
-* @info: Structure containing the potential arguments
+* _myalias - characteristics of alias builtin will be printed
+*
+* @info: Structure posible the having disagreement
+*
 * Return: Always if true 0
 */
 int _myalias(info_t *info)

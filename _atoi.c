@@ -1,19 +1,21 @@
 #include "shell.h"
 /**
-* interactive_inspect - returns true if shell is interactive_inspect mode
-* @info: struct address
+* interactive_inspect - if the shell is in interactive_inspect mode return true
 *
-* Return: 1 if interactive_inspect mode, 0 otherwise
+* @info: location of a struct
+*
+* Return: 1 will be retured if interactive_inspect mode is true, 0 if else
 */
 int interactive_inspect(info_t *info)
 {
 return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 /**
-* delim_check - checks if character is a delimeter
-* @c: the char to check
-* @delim: the delimeter string
-* Return: 1 if true, 0 if false
+* delim_check - it will check if the shell is delimeter
+*
+* @c: checks the charecter to charecter
+* @delim: string of the delimeter
+* Return: 1 will be returned if if true and 0 if false
 */
 int delim_check(char c, char *delim)
 {
@@ -23,9 +25,11 @@ return (1);
 return (0);
 }
 /**
-* isalpha_inspect - checks for alphabetic character
-* @c: The character to input
-* Return: 1 if c is alphabetic, 0 otherwise
+* isalpha_inspect - alphabetic character will inspect
+*
+* @c: charactet to use or inset/put
+*
+* Return: 1 if true, 0 if else
 */
 int isalpha_inspect(int c)
 {
@@ -35,9 +39,12 @@ else
 return (0);
 }
 /**
-* inspect_atoi - converts a string to an integer
-* @s: the string to be converted
-* Return: 0 if no numbers in string, converted number otherwise
+* inspect_atoi - a string will be converted to an integer
+*
+* @s: coverted string
+*
+* Return: 0 if no numbers found in the string, converted
+* number if numbers are found
 */
 int inspect_atoi(char *s)
 {
