@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
-* information_clearing - initializes info_t struct
-* @info: struct address
+* information_clearing - initializes info_t structure form
+* @info: structure address,
 */
 void information_clearing(info_t *info)
 {
@@ -11,9 +11,9 @@ info->path = NULL;
 info->argc = 0;
 }
 /**
-* informantion_setting - initializes info_t struct
-* @info: struct address
-* @av: argument vector
+* informantion_setting - starts info_t structure
+* @info: structure address,
+* @av: argumenting vector
 */
 void informantion_setting(info_t *info, char **av)
 {
@@ -34,16 +34,14 @@ info->argv[1] = NULL;
 for (i = 0; info->argv && info->argv[i]; i++)
 ;
 info->argc = i;
-alias_replacement(info)
-;
-vars_replacement(info)
-;
+alias_replacement(info);
+vars_replacement(info);
 }
 }
 /**
-* information_freeing - frees info_t struct fields
-* @info: struct address
-* @all: true if freeing all fields
+* information_freeing - frees info_t structure fields,
+* @info: structure address,
+* @all:valid if freeing all the fields
 */
 void information_freeing(info_t *info, int all)
 {
@@ -63,7 +61,7 @@ list_freer(&(info->alias));
 _safer(info->environ);
 info->environ = NULL;
 bsafer((void **)info->cmd_buf);
-if (info->readfd >2)
+if (info->readfd > 2)
 close(info->readfd);
 putchar_intiger(BUF_FLUSH);
 }

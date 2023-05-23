@@ -1,9 +1,8 @@
 #include "shell.h"
 /**
-* history_file_locater - gets the history file
-* @info: parameter struct
-*
-* Return: allocated string containg history file
+* history_file_locater - retrieves the history file
+* @info: parameter structure
+* Return: allocated string containing the history file
 */
 char *history_file_locater(info_t *info)
 {
@@ -12,7 +11,8 @@ dir = _getenv(info, "HOME=");
 if (!dir)
 return (NULL);
 buf = malloc(sizeof(char) * (strlen_length(dir) +
-strlen_length(HIST_FILE) + 2)); if (!buf)
+strlen_length(HIST_FILE) + 2));
+if (!buf)
 return (NULL);
 buf[0] = 0;
 _strcpy(buf, dir);
@@ -21,10 +21,9 @@ _strcat(buf, HIST_FILE);
 return (buf);
 }
 /**
-* history_writer - creates a file, or appends to an existing file
-* @info: the parameter struct
-*
-* Return: 1 on success, else -1
+* history_writer - creates a file or affixes to an existing file
+* @info: the parameter structure
+* Return: 1 on successful, or else -1
 */
 int history_writer(info_t *info)
 {
@@ -42,14 +41,14 @@ for (node = info->history; node; node = node->next)
 putsfd_intiger(node->str, fd);
 putfd_intiger('\n', fd);
 }
-putfd_intiger(BUF_FLUSH, fd); close(fd);
+putfd_intiger(BUF_FLUSH, fd);
+close(fd);
 return (1);
 }
 /**
-* history_reader - reads history from file
-* @info: the parameter struct
-*
-* Return: histcount on success, 0 otherwise
+* history_reader - affirms the history from file
+* @info: the parameter structure
+* Return: histcount on successful, if not then 0 otherwise
 */
 int history_reader(info_t *info)
 {
@@ -78,11 +77,11 @@ close(fd);
 for (i = 0; i < fsize; i++)
 if (buf[i] == '\n')
 {
-}
-if (last != i)
 buf[i] = 0;
 history_builder_list(info, buf + last, linecount++);
 last = i + 1;
+}
+if (last != i)
 history_builder_list(info, buf + last, linecount++);
 free(buf);
 info->histcount = linecount;
@@ -92,12 +91,11 @@ history_renumbered(info);
 return (info->histcount);
 }
 /**
-* history_builder_list - adds entry to a history linked list
-* @info: Structure containing potential arguments. Used to maintain
-* @buf: buffer
-* @linecount: the history linecount, histcount
-*
-* Return: Always 0
+* history_builder_list - affix entry to a history linked-list
+* @info: Structure contains potential arguments
+* @buf: buffer buffer
+* @linecount: the history linecount, histcount histcount
+* Return: Always 0 when true
 */
 int history_builder_list(info_t *info, char *buf, int linecount)
 {
@@ -110,10 +108,9 @@ info->history = node;
 return (0);
 }
 /**
-* history_renumbered - renumbers the history linked list after changes
-* @info: Structure containing potential arguments. Used to maintain
-*
-* Return: the new histcount
+* history_renumbered - renumber history linked-list after changed
+* @info: Structure contains potential argument
+* Return: the new histcount hiscount
 */
 int history_renumbered(info_t *info)
 {
