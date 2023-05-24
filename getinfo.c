@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
-* information_clearing - initializes info_t structure form
-* @info: structure address,
+* clear_info - initializes info_t struct
+* @info: struct address
 */
-void information_clearing(info_t *info)
+void clear_info(info_t *info)
 {
 info->arg = NULL;
 info->argv = NULL;
@@ -11,11 +11,11 @@ info->path = NULL;
 info->argc = 0;
 }
 /**
-* informantion_setting - starts info_t structure
-* @info: structure address,
-* @av: argumenting vector
+* set_info - initializes info_t struct
+* @info: struct address
+* @av: argument vector
 */
-void informantion_setting(info_t *info, char **av)
+void set_info(info_t *info, char **av)
 {
 int i = 0;
 info->fname = av[0];
@@ -34,18 +34,18 @@ info->argv[1] = NULL;
 for (i = 0; info->argv && info->argv[i]; i++)
 ;
 info->argc = i;
-alias_replacement(info);
-vars_replacement(info);
+replace_alias(info);
+replace_vars(info);
 }
 }
 /**
-* information_freeing - frees info_t structure fields,
-* @info: structure address,
-* @all:valid if freeing all the fields
+* free_info - frees info_t struct fields
+* @info: struct address
+* @all: true if freeing all fields
 */
-void information_freeing(info_t *info, int all)
+void free_info(info_t *info, int all)
 {
-_safer(info->argv);
+ffree(info->argv);
 info->argv = NULL;
 info->path = NULL;
 if (all)
@@ -53,16 +53,16 @@ if (all)
 if (!info->cmd_buf)
 free(info->arg);
 if (info->env)
-list_freer(&(info->env));
+free_list(&(info->env));
 if (info->history)
-list_freer(&(info->history));
+free_list(&(info->history));
 if (info->alias)
-list_freer(&(info->alias));
-_safer(info->environ);
+free_list(&(info->alias));
+ffree(info->environ);
 info->environ = NULL;
-bsafer((void **)info->cmd_buf);
+bfree((void **)info->cmd_buf);
 if (info->readfd > 2)
 close(info->readfd);
-putchar_intiger(BUF_FLUSH);
+_putchar(BUF_FLUSH);
 }
 }

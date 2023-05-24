@@ -1,27 +1,29 @@
 #include "shell.h"
 /**
-* eputs_voider - prints input for string
-* @str: string for printing
-* Return: Nothing at all
+* _eputs - prints an input string
+* @str: the string to be printed
+*
+* Return: Nothing
 */
-void eputs_voider(char *str)
+void _eputs(char *str)
 {
 int i = 0;
 if (!str)
 return;
 while (str[i] != '\0')
 {
-eputchar_intiger(str[i]);
+_eputchar(str[i]);
 i++;
 }
 }
 /**
-* eputchar_intiger - prints character c to the stderror
-* @c: character for printing
-* Return: On successful complete 1.
-* On error, -1, and errno is given valid
+* _eputchar - writes the character c to stderr
+* @c: The character to print
+*
+* Return: On success 1.
+* On error, -1 is returned, and errno is set appropriately.
 */
-int eputchar_intiger(char c)
+int _eputchar(char c)
 {
 static int i;
 static char buf[WRITE_BUF_SIZE];
@@ -35,13 +37,14 @@ buf[i++] = c;
 return (1);
 }
 /**
-* putfd_intiger - priint character c specified for fd
-* @c: character for printing
-* @fd: file-descriptor writing into
-* Return: On successful complete 1
-* On error -1, and errorno is given valid
+* _putfd - writes the character c to given fd
+* @c: The character to print
+* @fd: The filedescriptor to write to
+*
+* Return: On success 1.
+* On error, -1 is returned, and errno is set appropriately.
 */
-int putfd_intiger(char c, int fd)
+int _putfd(char c, int fd)
 {
 static int i;
 static char buf[WRITE_BUF_SIZE];
@@ -55,19 +58,20 @@ buf[i++] = c;
 return (1);
 }
 /**
-* putsfd_intiger - prints string input as necessary
-* @str: string for printing
-* @fd: file-descriptor for writing
-* Return: the number of characters inputted
+* _putsfd - prints an input string
+* @str: the string to be printed
+* @fd: the filedescriptor to write to
+*
+* Return: the number of chars put
 */
-int putsfd_intiger(char *str, int fd)
+int _putsfd(char *str, int fd)
 {
 int i = 0;
 if (!str)
 return (0);
 while (*str)
 {
-i += putfd_intiger(*str++, fd);
+i += _putfd(*str++, fd);
 }
 return (i);
 }

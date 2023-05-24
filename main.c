@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
-* main - entry mode
-* @ac: arg count counting
-* @av: arg vector verctors
+* main - entry point
+* @ac: arg count
+* @av: arg vector
 *
-* Return: 0 on successful, then 1 on error
+* Return: 0 on success, 1 on error
 */
 int main(int ac, char **av)
 {
@@ -23,19 +23,19 @@ if (errno == EACCES)
 exit(126);
 if (errno == ENOENT)
 {
-eputs_voider(av[0]);
-eputs_voider(": 0: Can't open mode ");
-eputs_voider(av[1]);
-eputchar_intiger('\n');
-eputchar_intiger(BUF_FLUSH);
+_eputs(av[0]);
+_eputs(": 0: Can't open ");
+_eputs(av[1]);
+_eputchar('\n');
+_eputchar(BUF_FLUSH);
 exit(127);
 }
 return (EXIT_FAILURE);
 }
 info->readfd = fd;
 }
-env_list_populator(info);
-history_reader(info);
-hsh_int(info, av);
+populate_env_list(info);
+read_history(info);
+hsh(info, av);
 return (EXIT_SUCCESS);
 }

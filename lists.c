@@ -1,10 +1,11 @@
 #include "shell.h"
 /**
-* add_node - adds a node to the start-list
-* @head: pointer adress pointing to head node
-* @str: string field for node
-* @num: node index concurred by history
-* Return: size of list checking
+* add_node - adds a node to the start of the list
+* @head: address of pointer to head node
+* @str: str field of node
+* @num: node index used by history
+*
+* Return: size of list
 */
 list_t *add_node(list_t **head, const char *str, int num)
 {
@@ -30,11 +31,12 @@ new_head->next = *head;
 return (new_head);
 }
 /**
-* add_node_end - append node at end of list
-* @head: pointer address pointing to head node
-* @str: stringing field for node
-* @num: node-index used in the history
-* Return: size of list checking
+* add_node_end - adds a node to the end of the list
+* @head: address of pointer to head node
+* @str: str field of node
+* @num: node index used by history
+*
+* Return: size of list
 */
 list_t *add_node_end(list_t **head, const char *str, int num)
 {
@@ -67,9 +69,10 @@ else
 return (new_node);
 }
 /**
-* print_list_str - prints string element of a list_t linked list only
-* @h: pointer pointing  towards first node
-* Return: size of list checking
+* print_list_str - prints only the str element of a list_t linked list
+* @h: pointer to first node
+*
+* Return: size of list
 */
 size_t print_list_str(const list_t *h)
 {
@@ -85,9 +88,10 @@ return (i);
 }
 /**
 * delete_node_at_index - deletes node at given index
-* @head: pointer address pointing towards first node
-* @index: index of node for deletion
-* Return: 1 on successful complete, 0 on fail
+* @head: address of pointer to first node
+* @index: index of node to delete
+*
+* Return: 1 on success, 0 on failure
 */
 int delete_node_at_index(list_t **head, unsigned int index)
 {
@@ -120,11 +124,12 @@ node = node->next;
 return (0);
 }
 /**
-* list_freer - free all list node
-* @head_ptr: pointer address pointing  towards head node
+* free_list - frees all nodes of a list
+* @head_ptr: address of pointer to head node
+*
 * Return: void
 */
-void list_freer(list_t **head_ptr)
+void free_list(list_t **head_ptr)
 {
 list_t *node, *next_node, *head;
 if (!head_ptr || !*head_ptr)
