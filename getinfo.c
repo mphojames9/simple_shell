@@ -35,7 +35,7 @@ for (i = 0; info->argv && info->argv[i]; i++)
 ;
 info->argc = i;
 alias_replacement(info);
-vars_replacement(info);
+replace_vars(info);
 }
 }
 /**
@@ -66,3 +66,4 @@ close(info->readfd);
 putchar_char(BUF_FLUSH);
 }
 }
+
