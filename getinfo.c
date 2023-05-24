@@ -40,6 +40,7 @@ vars_replacement(info);
 }
 /**
 * free_info - frees info_t struct fields
+
 * @info: struct address
 * @all: true if freeing all fields
 */
