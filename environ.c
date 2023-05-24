@@ -19,7 +19,7 @@ return (0);
 */
 char *_getenv(info_t *info, const char *name)
 {
-list_t *node = info->env;
+record_m *node = info->env;
 char *p;
 while (node)
 {
@@ -74,7 +74,7 @@ return (0);
 */
 int env_list_population(info_t *info)
 {
-list_t *node = NULL;
+record_m *node = NULL;
 size_t i;
 for (i = 0; environ[i]; i++)
 add_node_end(&node, environ[i], 0);

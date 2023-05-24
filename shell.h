@@ -39,7 +39,7 @@ typedef struct liststr
 int num;
 char *str;
 struct liststr *next;
-} list_t;
+} record_m;
 /**
 * struct passinfo - contains pseudo-arguements to pass into a function,
 * allowing uniform prototype for function pointer struct
@@ -72,9 +72,9 @@ unsigned int line_count;
 int err_num;
 int linecount_flag;
 char *fname;
-list_t *env;
-list_t *history;
-list_t *alias;
+record_m *env;
+record_m *history;
+record_m *alias;
 char **environ;
 int env_changed;
 int status;
@@ -178,21 +178,21 @@ int history_reader(info_t *info);
 int history_list_builder(info_t *info, char *buf, int linecount);
 int history_renumber(info_t *info);
 /* toem_lists.c */
-list_t *add_node(list_t **, const char *, int);
-list_t *add_node_end(list_t **, const char *, int);
-size_t print_list_str(const list_t *);
-int node_at_index_deletion(list_t **, unsigned int);
-void free_list(list_t **);
+record_m *add_node(record_m **, const char *, int);
+record_m *add_node_end(record_m **, const char *, int);
+size_t print_list_str(const record_m *);
+int node_at_index_deletion(record_m **, unsigned int);
+void free_list(record_m **);
 /* toem_lists1.c */
-size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+size_t list_len(const record_m *);
+char **record_mo_strings(record_m *);
+size_t print_list(const record_m *);
+record_m *node_starts_with(record_m *, char *, char);
+ssize_t get_node_index(record_m *, record_m *);
 /* toem_vars.c */
 int chain_checker(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int alias_replacement(info_t *);
-int vars_replacement(info_t *);
+int replace_vars(info_t *);
 int string_replacement(char **, char *);
 #endif
