@@ -38,8 +38,3 @@ close(info->readfd);
 putchar_char(BUF_FLUSH);
 }
 }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 3e606b195c52ac6a1de82fadd1099acb88169adc
