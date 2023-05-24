@@ -34,8 +34,8 @@ info->argv[1] = NULL;
 for (i = 0; info->argv && info->argv[i]; i++)
 ;
 info->argc = i;
-replace_alias(info);
-replace_vars(info);
+alias_replacement(info);
+vars_replacement(info);
 }
 }
 /**
