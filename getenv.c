@@ -10,7 +10,7 @@ char **get_environ(info_t *info)
 {
 if (!info->environ || info->env_changed)
 {
-info->environ = list_to_strings(info->env);
+info->environ = record_mo_strings(info->env);
 info->env_changed = 0;
 }
 return (info->environ);
@@ -24,7 +24,7 @@ return (info->environ);
 */
 int unsetenv2_checker(info_t *info, char *var)
 {
-list_t *node = info->env;
+record_m *node = info->env;
 size_t i = 0;
 char *p;
 if (!node || !var)
@@ -56,7 +56,7 @@ return (info->env_changed);
 int setenv2_checker(info_t *info, char *var, char *value)
 {
 char *buf = NULL;
-list_t *node;
+record_m *node;
 char *p;
 if (!var || !value)
 return (0);

@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
-* interactive_infor - returns true if shell is interactive mode
+* interactive_infor - returns true if shell is interactive_infor mode
 * @info: struct address
 *
-* Return: 1 if interactive mode, 0 otherwise
+* Return: 1 if interactive_infor mode, 0 otherwise
 */
 int interactive_infor(info_t *info)
 {

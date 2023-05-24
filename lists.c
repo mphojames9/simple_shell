@@ -1,5 +1,5 @@
 #include "shell.h"
-/**
+/**	
 * add_node - adds a node to the start of the list
 * @head: address of pointer to head node
 * @str: str field of node
@@ -7,15 +7,15 @@
 *
 * Return: size of list
 */
-list_t *add_node(list_t **head, const char *str, int num)
+record_m *add_node(record_m **head, const char *str, int num)
 {
-list_t *new_head;
+record_m *new_head;
 if (!head)
 return (NULL);
-new_head = malloc(sizeof(list_t));
+new_head = malloc(sizeof(record_m));
 if (!new_head)
 return (NULL);
-_memset((void *)new_head, 0, sizeof(list_t));
+_memset((void *)new_head, 0, sizeof(record_m));
 new_head->num = num;
 if (str)
 {
@@ -38,16 +38,16 @@ return (new_head);
 *
 * Return: size of list
 */
-list_t *add_node_end(list_t **head, const char *str, int num)
+record_m *add_node_end(record_m **head, const char *str, int num)
 {
-list_t *new_node, *node;
+record_m *new_node, *node;
 if (!head)
 return (NULL);
 node = *head;
-new_node = malloc(sizeof(list_t));
+new_node = malloc(sizeof(record_m));
 if (!new_node)
 return (NULL);
-_memset((void *)new_node, 0, sizeof(list_t));
+_memset((void *)new_node, 0, sizeof(record_m));
 new_node->num = num;
 if (str)
 {
@@ -69,12 +69,12 @@ else
 return (new_node);
 }
 /**
-* print_list_str - prints only the str element of a list_t linked list
+* print_list_str - prints only the str element of a record_m linked list
 * @h: pointer to first node
 *
 * Return: size of list
 */
-size_t print_list_str(const list_t *h)
+size_t print_list_str(const record_m *h)
 {
 size_t i = 0;
 while (h)
@@ -93,9 +93,9 @@ return (i);
 *
 * Return: 1 on success, 0 on failure
 */
-int node_at_index_deletion(list_t **head, unsigned int index)
+int node_at_index_deletion(record_m **head, unsigned int index)
 {
-list_t *node, *prev_node;
+record_m *node, *prev_node;
 unsigned int i = 0;
 if (!head || !*head)
 return (0);
@@ -129,11 +129,11 @@ return (0);
 *
 * Return: void
 */
-void free_list(list_t **head_ptr)
+void free_list(record_m **head_ptr)
 {
-list_t *node, *next_node, *head;
+record_m *node, *next_node, *head;
 if (!head_ptr || !*head_ptr)
-return;	
+return; 
 head = *head_ptr;
 node = head;
 while (node)

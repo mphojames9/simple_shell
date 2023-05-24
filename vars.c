@@ -72,7 +72,7 @@ j = len;
 int alias_replacement(info_t *info)
 {
 int i;
-list_t *node;
+record_m *node;
 char *p;
 for (i = 0; i < 10; i++)
 {
@@ -99,7 +99,7 @@ return (1);
 int replace_vars(info_t *info)
 {
 int i = 0;
-list_t *node;
+record_m *node;
 for (i = 0; info->argv[i]; i++)
 {
 if (info->argv[i][0] != '$' || !info->argv[i][1])
@@ -127,17 +127,20 @@ string_replacement(&info->argv[i], _strdup(""));
 }
 return (0);
 }
+int string_replacement(char **, char *)
+{
+return 0;
+}
 /**
-* string_replacement - replaces string
-* @old: address of old string
-* @new: new string
-*
-* Return: 1 if replaced, 0 otherwise
-*/
+ * string_replacement - replaces string
+ * @old: address of old string
+ * @new: new string
+ *
+ * Return: 1 if replaced, 0 otherwise
+ */
 int string_replacement(char **old, char *new)
 {
 free(*old);
 *old = new;
 return (1);
 }
-

@@ -66,4 +66,3 @@ close(info->readfd);
 putchar_char(BUF_FLUSH);
 }
 }
-

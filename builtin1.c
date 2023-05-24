@@ -56,7 +56,7 @@ return (add_node_end(&(info->alias), str, 0) == NULL);
 *
 * Return: Always 0 on success, 1 on error
 */
-int print_alias(list_t *node)
+int print_alias(record_m *node)
 {
 char *p = NULL, *a = NULL;
 if (node)
@@ -81,7 +81,7 @@ int alias_checker(info_t *info)
 {
 int i = 0;
 char *p = NULL;
-list_t *node = NULL;
+record_m *node = NULL;
 if (info->argc == 1)
 {
 node = info->alias;
@@ -102,3 +102,4 @@ print_alias(node_starts_with(info->alias, info->argv[i], '='));
 }
 return (0);
 }
+
