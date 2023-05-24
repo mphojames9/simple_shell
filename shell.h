@@ -23,7 +23,7 @@
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
 /* 1 if using system getline() */
-#define USE_GETLINE 0
+#define USEgetline_checker 0
 #define USE_STRTOK 0
 #define HIST_FILE ".simple_shell_history"
 #define HIST_MAX 4096
@@ -98,30 +98,30 @@ int (*func)(info_t *);
 } builtin_table;
 /* toem_shloop.c */
 int hsh(info_t *, char **);
-int find_builtin(info_t *);
+int builtin_locator(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 /* toem_parser.c */
-int is_cmd(info_t *, char *);
+int cmd_checker(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
-/* loophsh.c */
-int loophsh(char **);
+/* hsh_loop.c */
+int hsh_loop(char **);
 /* toem_errors.c */
 void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int eputchar_chr(char);
+int putfd_char(char c, int fd);
+int putsfd_char(char *str, int fd);
 /* toem_string.c */
-int _strlen(char *);
-int _strcmp(char *, char *);
+int strlen_char(char *);
+int strcmp_char(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 /* toem_string1.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
-int _putchar(char);
+int putchar_char(char);
 /* toem_exits.c */
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
@@ -134,28 +134,28 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 /* toem_memory.c */
-int bfree(void **);
-/* toem_atoi.c */
-int interactive(info_t *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _atoi(char *);
+int befree(void **);
+/* toematoi_check.c */
+int interactive_infor(info_t *);
+int delim_check(char, char *);
+int isalpha_check(int);
+int atoi_check(char *);
 /* toem_errors1.c */
-int _erratoi(char *);
+int erratoi_check(char *);
 void print_error(info_t *, char *);
-int print_d(int, int);
+int printing_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 /* toem_builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int _myevacuate(info_t *);
+int cd_change(info_t *);
+int _myassistance(info_t *);
 /* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
-/*toem_getline.c */
+int history_checker(info_t *);
+int alias_checker(info_t *);
+/*toemgetline_checker.c */
 ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+int getline_checker(info_t *, char **, size_t *);
 void sigintHandler(int);
 /* toem_getinfo.c */
 void clear_info(info_t *);
@@ -163,27 +163,27 @@ void set_info(info_t *, char **);
 void free_info(info_t *, int);
 /* toem_environ.c */
 char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+int env_checker(info_t *);
+int setenv_checker(info_t *);
+int unsetenv_checker(info_t *);
+int env_list_population(info_t *);
 /* toem_getenv.c */
 char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+int unsetenv2_checker(info_t *, char *);
+int setenv2_checker(info_t *, char *, char *);
 /* toem_history.c */
 char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+int history_writer(info_t *info);
+int history_reader(info_t *info);
+int history_list_builder(info_t *info, char *buf, int linecount);
+int history_renumber(info_t *info);
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
-int delete_node_at_index(list_t **, unsigned int);
+int node_at_index_deletion(list_t **, unsigned int);
 void free_list(list_t **);
-/* lists1.c */
+/* toem_lists1.c */
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);

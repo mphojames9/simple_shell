@@ -13,24 +13,24 @@ int builtin_ret = 0;
 while (r != -1 && builtin_ret != -2)
 {
 clear_info(info);
-if (interactive(info))
+if (interactive_infor(info))
 _puts("$ ");
-_eputchar(BUF_FLUSH);
+eputchar_chr(BUF_FLUSH);
 r = get_input(info);
 if (r != -1)
 {
 set_info(info, av);
-builtin_ret = find_builtin(info);
+builtin_ret = builtin_locator(info);
 if (builtin_ret == -1)
 find_cmd(info);
 }
-else if (interactive(info))
-_putchar('\n');
+else if (interactive_infor(info))
+putchar_char('\n');
 free_info(info, 0);
 }
-write_history(info);
+history_writer(info);
 free_info(info, 1);
-if (!interactive(info) && info->status)
+if (!interactive_infor(info) && info->status)
 exit(info->status);
 if (builtin_ret == -2)
 {
@@ -41,7 +41,7 @@ exit(info->err_num);
 return (builtin_ret);
 }
 /**
-* find_builtin - finds a builtin command
+* builtin_locator - finds a builtin command
 * @info: the parameter & return info struct
 *
 * Return: -1 if builtin not found,
@@ -49,22 +49,22 @@ return (builtin_ret);
 * 1 if builtin found but not successful,
 * 2 if builtin signals exit()
 */
-int find_builtin(info_t *info)
+int builtin_locator(info_t *info)
 {
 int i, built_in_ret = -1;
 builtin_table builtintbl[] = {
-{"exit", _myexit},
-{"env", _myenv},
-{"help", _myhelp},
-{"history", _myhistory},
-{"setenv", _mysetenv},
-{"unsetenv", _myunsetenv},
-{"cd", _mycd},
-{"alias", _myalias},
+{"exit", _myevacuate},
+{"env", env_checker},
+{"help", _myassistance},
+{"history", history_checker},
+{"setenv", setenv_checker},
+{"unsetenv", unsetenv_checker},
+{"cd", cd_change},
+{"alias", alias_checker},
 {NULL, NULL}
 };
 for (i = 0; builtintbl[i].type; i++)
-if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+if (strcmp_char(info->argv[0], builtintbl[i].type) == 0)
 {
 info->line_count++;
 built_in_ret = builtintbl[i].func(info);
@@ -89,7 +89,7 @@ info->line_count++;
 info->linecount_flag = 0;
 }
 for (i = 0, k = 0; info->arg[i]; i++)
-if (!is_delim(info->arg[i], " \t\n"))
+if (!delim_check(info->arg[i], " \t\n"))
 k++;
 if (!k)
 return;
@@ -101,8 +101,8 @@ fork_cmd(info);
 }
 else
 {
-if ((interactive(info) || _getenv(info, "PATH=")
-|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+if ((interactive_infor(info) || _getenv(info, "PATH=")
+|| info->argv[0][0] == '/') && cmd_checker(info, info->argv[0]))
 fork_cmd(info);
 else if (*(info->arg) != '\n')
 {

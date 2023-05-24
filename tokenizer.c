@@ -1,89 +1,142 @@
 #include "shell.h"
 /**
-* **strtow - splits a string into words. Repeat delimiters are ignored
-* @str: the input string
-* @d: the delimeter string
-* Return: a pointer to an array of strings, or NULL on failure
+* chain_checker - test if current char in buffer is a chain delimeter
+* @info: the parameter struct
+* @buf: the char buffer
+* @p: address of current position in buf
+*
+* Return: 1 if chain delimeter, 0 otherwise
 */
-char **strtow(char *str, char *d)
+int chain_checker(info_t *info, char *buf, size_t *p)
 {
-int i, j, k, m, numwords = 0;
-char **s;
-if (str == NULL || str[0] == 0)
-return (NULL);
-if (!d)
-d = " ";
-for (i = 0; str[i] != '\0'; i++)
-if (!is_delim(str[i], d) && (is_delim(str[i + 1], d) || !str[i + 1]))
-numwords++;
-if (numwords == 0)
-return (NULL);
-s = malloc((1 + numwords) * sizeof(char *));
-if (!s)
-return (NULL);
-for (i = 0, j = 0; j < numwords; j++)
+size_t j = *p;
+if (buf[j] == '|' && buf[j + 1] == '|')
 {
-while (is_delim(str[i], d))
-i++;
-k = 0;
-while (!is_delim(str[i + k], d) && str[i + k])
-k++;
-s[j] = malloc((k + 1) * sizeof(char));
-if (!s[j])
-{
-for (k = 0; k < j; k++)
-free(s[k]);
-free(s);
-return (NULL);
+buf[j] = 0;
+j++;
+info->cmd_buf_type = CMD_OR;
 }
-for (m = 0; m < k; m++)
-s[j][m] = str[i++];
-s[j][m] = 0;
+else if (buf[j] == '&' && buf[j + 1] == '&')
+{
+buf[j] = 0;
+j++;
+info->cmd_buf_type = CMD_AND;
 }
-s[j] = NULL;
-return (s);
+else if (buf[j] == ';') /* found end of this command */
+{
+buf[j] = 0; /* replace semicolon with null */
+info->cmd_buf_type = CMD_CHAIN;
+}
+else
+return (0);
+*p = j;
+return (1);
 }
 /**
-* **strtow2 - splits a string into words
-* @str: the input string
-
-* @d: the delimeter
-* Return: a pointer to an array of strings, or NULL on failure
+* check_chain - checks we should continue chaining based on last status
+* @info: the parameter struct
+* @buf: the char buffer
+* @p: address of current position in buf
+* @i: starting position in buf
+* @len: length of buf
+*
+* Return: Void
 */
-char **strtow2(char *str, char d)
+void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
-int i, j, k, m, numwords = 0;
-char **s;
-if (str == NULL || str[0] == 0)
-return (NULL);
-for (i = 0; str[i] != '\0'; i++)
-if ((str[i] != d && str[i + 1] == d) ||
-(str[i] != d && !str[i + 1]) || str[i + 1] == d)
-numwords++;
-if (numwords == 0)
-return (NULL);
-s = malloc((1 + numwords) * sizeof(char *));
-if (!s)
-return (NULL);
-for (i = 0, j = 0; j < numwords; j++)
+size_t j = *p;
+if (info->cmd_buf_type == CMD_AND)
 {
-while (str[i] == d && str[i] != d)
-i++;
-k = 0;
-while (str[i + k] != d && str[i + k] && str[i + k] != d)
-k++;
-s[j] = malloc((k + 1) * sizeof(char));
-if (!s[j])
+if (info->status)
 {
-for (k = 0; k < j; k++)
-free(s[k]);
-free(s);
-return (NULL);
+buf[i] = 0;
+j = len;
 }
-for (m = 0; m < k; m++)
-s[j][m] = str[i++];
-s[j][m] = 0;
 }
-s[j] = NULL;
-return (s);
+if (info->cmd_buf_type == CMD_OR)
+{
+if (!info->status)
+{
+buf[i] = 0;
+j = len;
+}
+}
+*p = j;
+}
+/**
+* alias_replacement - replaces an aliases in the tokenized string
+* @info: the parameter struct
+*
+* Return: 1 if replaced, 0 otherwise
+*/
+int alias_replacement(info_t *info)
+{
+int i;
+list_t *node;
+char *p;
+for (i = 0; i < 10; i++)
+{
+node = node_starts_with(info->alias, info->argv[0], '=');
+if (!node)
+return (0);
+free(info->argv[0]);
+p = _strchr(node->str, '=');
+if (!p)
+return (0);
+p = _strdup(p + 1);
+if (!p)
+return (0);
+info->argv[0] = p;
+}
+return (1);
+}
+/**
+* vars_replacement - replaces vars in the tokenized string
+* @info: the parameter struct
+*
+* Return: 1 if replaced, 0 otherwise
+*/
+int vars_replacement(info_t *info)
+{
+int i = 0;
+list_t *node;
+for (i = 0; info->argv[i]; i++)
+{
+if (info->argv[i][0] != '$' || !info->argv[i][1])
+continue;
+if (!strcmp_char(info->argv[i], "$?"))
+{
+string_replacement(&(info->argv[i]),
+_strdup(convert_number(info->status, 10, 0)));
+continue;
+}
+if (!strcmp_char(info->argv[i], "$$"))
+{
+string_replacement(&(info->argv[i]),
+_strdup(convert_number(getpid(), 10, 0)));
+continue;
+}
+node = node_starts_with(info->env, &info->argv[i][1], '=');
+if (node)
+{
+string_replacement(&(info->argv[i]),
+_strdup(_strchr(node->str, '=') + 1));
+continue;
+}
+string_replacement(&info->argv[i], _strdup(""));
+}
+return (0);
+}
+/**
+* string_replacement - replaces string
+* @old: address of old string
+* @new: new string
+*
+* Return: 1 if replaced, 0 otherwise
+*/
+int string_replacement(char **old, char *new)
+{
+free(*old);
+*old = new;
+return (1);
 }

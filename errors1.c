@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
-* _erratoi - converts a string to an integer
+* erratoi_check - converts a string to an integer
 * @s: the string to be converted
 * Return: 0 if no numbers in string, converted number otherwise
 * -1 on error
 */
-int _erratoi(char *s)
+int erratoi_check(char *s)
 {
 int i = 0;
 unsigned long int result = 0;
@@ -36,30 +36,30 @@ void print_error(info_t *info, char *estr)
 {
 _eputs(info->fname);
 _eputs(": ");
-print_d(info->line_count, STDERR_FILENO);
+printing_d(info->line_count, STDERR_FILENO);
 _eputs(": ");
 _eputs(info->argv[0]);
 _eputs(": ");
 _eputs(estr);
 }
 /**
-* print_d - function prints a decimal (integer) number (base 10)
+* printing_d - function prints a decimal (integer) number (base 10)
 * @input: the input
 * @fd: the filedescriptor to write to
 *
 * Return: number of characters printed
 */
-int print_d(int input, int fd)
+int printing_d(int input, int fd)
 {
-int (*__putchar)(char) = _putchar;
+int (*_putchar_char)(char) = putchar_char;
 int i, count = 0;
 unsigned int _abs_, current;
 if (fd == STDERR_FILENO)
-__putchar = _eputchar;
+_putchar_char = eputchar_chr;
 if (input < 0)
 {
 _abs_ = -input;
-__putchar('-');
+_putchar_char('-');
 count++;
 }
 else
@@ -69,12 +69,12 @@ for (i = 1000000000; i > 1; i /= 10)
 {
 if (_abs_ / i)
 {
-__putchar('0' + current / i);
+_putchar_char('0' + current / i);
 count++;
 }
 current %= i;
 }
-__putchar('0' + current);
+_putchar_char('0' + current);
 count++;
 return (count);
 }
