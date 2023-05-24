@@ -183,16 +183,16 @@ list_t *add_node_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
-/* toem_lists1.c */
+/* lists1.c */
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 /* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
+int chain_checker(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
+int alias_replacement(info_t *);
+int vars_replacement(info_t *);
+int string_replacement(char **, char *);
 #endif
