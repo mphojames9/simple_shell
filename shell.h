@@ -193,6 +193,6 @@ ssize_t get_node_index(list_t *, list_t *);
 int chain_checker(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int alias_replacement(info_t *);
-int vars_replacement(info_t *);
+int replace_vars(info_t *);
 int string_replacement(char **, char *);
 #endif
