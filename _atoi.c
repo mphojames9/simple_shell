@@ -1,9 +1,7 @@
 #include "shell.h"
 /**
 * interactive_inspect - if the shell is in interactive_inspect mode return true
-*
 * @info: location of a struct
-*
 * Return: 1 will be retured if interactive_inspect mode is true, 0 if else
 */
 int interactive_inspect(info_t *info)
@@ -12,7 +10,6 @@ return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 /**
 * delim_check - it will check if the shell is delimeter
-*
 * @c: checks the charecter to charecter
 * @delim: string of the delimeter
 * Return: 1 will be returned if if true and 0 if false
@@ -26,9 +23,7 @@ return (0);
 }
 /**
 * isalpha_inspect - alphabetic character will inspect
-*
 * @c: charactet to use or inset/put
-*
 * Return: 1 if true, 0 if else
 */
 int isalpha_inspect(int c)

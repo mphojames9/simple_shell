@@ -1,24 +1,23 @@
 #include "shell.h"
 /**
-* get_environ - returns the string array copy of our environ
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* get_environ - givees the string array copy for the environment
+* @info: Structure with possibility of difference
+* Return: Always 0 if true
 */
 char **get_environ(info_t *info)
 {
 if (!info->environ || info->env_changed)
 {
-info->environ = to_the_strings_lister(info->env); info->env_changed = 0;
+info->environ = to_the_strings_lister(info->env);
+info->env_changed = 0;
 }
 return (info->environ);
 }
 /**
-* deenv_setter - Remove an environment variable
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: 1 on delete, 0 otherwise
-* @var: the string env var property
+* deenv_setter - deletes environment variable
+* @info: Structure with possible difference
+* Return: 1 when deleted, then 0 otherwise if not
+* @var: stringed environment variable property
 */
 int deenv_setter(info_t *info, char *var)
 {
@@ -43,13 +42,11 @@ i++;
 return (info->env_changed);
 }
 /**
-* env_setter - Initialize a new environment variable,
-* or modify an existing one
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* @var: the string env var property
-* @value: the string env var value
-* Return: Always 0
+* env_setter - start a new environment var or change existing
+* @info: Structure with possible clash
+* @var: environmental variable charecteristics
+* @value: environmental variable value for stringg
+* Return: Always 0 if true and valid
 */
 int env_setter(info_t *info, char *var, char *value)
 {

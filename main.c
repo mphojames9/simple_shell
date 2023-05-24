@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
-* main - entry point
-* @ac: arg count
-* @av: arg vector
+* main - entry mode
+* @ac: arg count counting
+* @av: arg vector verctors
 *
-* Return: 0 on success, 1 on error
+* Return: 0 on successful, then 1 on error
 */
 int main(int ac, char **av)
 {
@@ -24,7 +24,7 @@ exit(126);
 if (errno == ENOENT)
 {
 eputs_voider(av[0]);
-eputs_voider(": 0: Can't open ");
+eputs_voider(": 0: Can't open mode ");
 eputs_voider(av[1]);
 eputchar_intiger('\n');
 eputchar_intiger(BUF_FLUSH);

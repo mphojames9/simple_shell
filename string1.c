@@ -1,10 +1,9 @@
 #include "shell.h"
 /**
-* _strcpy - copies a string
-* @dest: the destination
-* @src: the source
-*
-* Return: pointer to destination
+* _strcpy - copies string sttring
+* @dest: destination to go
+* @src: source source
+* Return: pointer pointing toward destination
 */
 char *_strcpy(char *dest, char *src)
 {
@@ -20,10 +19,9 @@ dest[i] = 0;
 return (dest);
 }
 /**
-* _strdup - duplicates a string
-* @str: the string to duplicate
-*
-* Return: pointer to the duplicated string
+* _strdup - duplicates copy string
+* @str: the string to  be duplicated
+* Return: pointer for  duplicated string
 */
 char *_strdup(const char *str)
 {
@@ -41,10 +39,9 @@ ret[length] = *--str;
 return (ret);
 }
 /**
-* _puts - prints an input string
-* @str: the string to be printed
-*
-* Return: Nothing
+* _puts - prints out input string string
+* @str: the string for  printed version
+* Return: Nothing at all
 */
 void _puts(char *str)
 {
@@ -53,16 +50,15 @@ if (!str)
 return;
 while (str[i] != '\0')
 {
-putchar_intiger(str
-[i]); i++;
+putchar_intiger(str[i]);
+i++;
 }
 }
 /**
-* putchar_intiger - writes the character c to stdout
-* @c: The character to print
-*
-* Return: On success 1.
-* On error, -1 is returned, and errno is set appropriately.
+* putchar_intiger - writes the char c to std-out
+* @c: character to be printed out
+* Return: On successful 1.
+* On error, -1 is returned when fail, and errno is given valid
 */
 int putchar_intiger(char c)
 {

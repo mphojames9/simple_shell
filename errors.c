@@ -1,9 +1,8 @@
 #include "shell.h"
 /**
-* eputs_voider - prints an input string
-* @str: the string to be printed
-*
-* Return: Nothing
+* eputs_voider - prints input for string
+* @str: string for printing
+* Return: Nothing at all
 */
 void eputs_voider(char *str)
 {
@@ -12,16 +11,15 @@ if (!str)
 return;
 while (str[i] != '\0')
 {
+eputchar_intiger(str[i]);
+i++;
 }
 }
 /**
-eputchar_intiger(str
-[i]); i++;
-* eputchar_intiger - writes the character c to stderr
-* @c: The character to print
-*
-* Return: On success 1.
-* On error, -1 is returned, and errno is set appropriately.
+* eputchar_intiger - prints character c to the stderror
+* @c: character for printing
+* Return: On successful complete 1.
+* On error, -1, and errno is given valid
 */
 int eputchar_intiger(char c)
 {
@@ -37,12 +35,11 @@ buf[i++] = c;
 return (1);
 }
 /**
-* putfd_intiger - writes the character c to given fd
-* @c: The character to print
-* @fd: The filedescriptor to write to
-*
-* Return: On success 1.
-* On error, -1 is returned, and errno is set appropriately.
+* putfd_intiger - priint character c specified for fd
+* @c: character for printing
+* @fd: file-descriptor writing into
+* Return: On successful complete 1
+* On error -1, and errorno is given valid
 */
 int putfd_intiger(char c, int fd)
 {
@@ -58,11 +55,10 @@ buf[i++] = c;
 return (1);
 }
 /**
-* putsfd_intiger - prints an input string
-* @str: the string to be printed
-* @fd: the filedescriptor to write to
-*
-* Return: the number of chars put
+* putsfd_intiger - prints string input as necessary
+* @str: string for printing
+* @fd: file-descriptor for writing
+* Return: the number of characters inputted
 */
 int putsfd_intiger(char *str, int fd)
 {

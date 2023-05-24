@@ -17,16 +17,16 @@ exitcheck = errational(info->argv[1]);
 if (exitcheck == -1)
 {
 info->status = 2;
-error_printer (info, "unallowed intiger");
-eputs_voider (info->argv[1]);
+error_printer(info, "unallowed intiger");
+eputs_voider(info->argv[1]);
 eputchar_intiger('\n');
-return(1);
+return (1);
 }
-info->err_num = errational (info->argv[1]);
-return(-2);
+info->err_num = errational(info->argv[1]);
+return (-2);
 }
 info->err_num = -1;
-return(-2);
+return (-2);
 }
 /**
 * directory_change - the current directory will be
@@ -68,7 +68,7 @@ chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 else
 chdir_ret = chdir(info->argv[1]);
 if (chdir_ret == -1)
-{ 
+{
 error_printer(info, "can't cd to ");
 eputs_voider(info->argv[1]), eputchar_intiger('\n');
 }
