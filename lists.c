@@ -87,13 +87,13 @@ i++;
 return (i);
 }
 /**
-* delete_node_at_index - deletes node at given index
+* node_at_index_deletion - deletes node at given index
 * @head: address of pointer to first node
 * @index: index of node to delete
 *
 * Return: 1 on success, 0 on failure
 */
-int delete_node_at_index(list_t **head, unsigned int index)
+int node_at_index_deletion(list_t **head, unsigned int index)
 {
 list_t *node, *prev_node;
 unsigned int i = 0;
@@ -133,7 +133,7 @@ void free_list(list_t **head_ptr)
 {
 list_t *node, *next_node, *head;
 if (!head_ptr || !*head_ptr)
-return;
+return;	
 head = *head_ptr;
 node = head;
 while (node)

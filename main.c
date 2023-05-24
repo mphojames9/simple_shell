@@ -26,16 +26,16 @@ if (errno == ENOENT)
 _eputs(av[0]);
 _eputs(": 0: Can't open ");
 _eputs(av[1]);
-_eputchar('\n');
-_eputchar(BUF_FLUSH);
+eputchar_chr('\n');
+eputchar_chr(BUF_FLUSH);
 exit(127);
 }
 return (EXIT_FAILURE);
 }
 info->readfd = fd;
 }
-populate_env_list(info);
-read_history(info);
+env_list_population(info);
+history_reader(info);
 hsh(info, av);
 return (EXIT_SUCCESS);
 }
