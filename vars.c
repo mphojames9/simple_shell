@@ -1,10 +1,8 @@
 #include "shell.h"
 /**
 * chain_checker - test if current char in buffer is a chain delimeter
-
 * @info: the parameter struct
 * @buf: the char buffer
-*
 * @p: address of current position in buf
 *
 * Return: 1 if chain delimeter, 0 otherwise
@@ -106,13 +104,13 @@ for (i = 0; info->argv[i]; i++)
 {
 if (info->argv[i][0] != '$' || !info->argv[i][1])
 continue;
-if (!_strcmp(info->argv[i], "$?"))
+if (!strcmp_char(info->argv[i], "$?"))
 {
 string_replacement(&(info->argv[i]),
 _strdup(convert_number(info->status, 10, 0)));
 continue;
 }
-if (!_strcmp(info->argv[i], "$$"))
+if (!strcmp_char(info->argv[i], "$$"))
 {
 string_replacement(&(info->argv[i]),
 _strdup(convert_number(getpid(), 10, 0)));
@@ -142,3 +140,4 @@ free(*old);
 *old = new;
 return (1);
 }
+
