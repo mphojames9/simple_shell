@@ -127,17 +127,13 @@ string_replacement(&info->argv[i], _strdup(""));
 }
 return (0);
 }
-int string_replacement(char **, char *)
-{
-return 0;
-}
 /**
- * string_replacement - replaces string
- * @old: address of old string
- * @new: new string
- *
- * Return: 1 if replaced, 0 otherwise
- */
+* string_replacement - replaces string
+* @old: address of old string
+* @new: new string
+*
+* Return: 1 if replaced, 0 otherwise
+*/
 int string_replacement(char **old, char *new)
 {
 free(*old);
