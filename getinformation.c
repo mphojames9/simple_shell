@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
-* clear_info - initializes info_t struct
-* @info: struct address
+* clear_info - starts the format
+* @info: addressed structured
 */
 void clear_info(info_t *info)
 {
@@ -11,9 +11,9 @@ info->path = NULL;
 info->argc = 0;
 }
 /**
-* set_info - initializes info_t struct
-* @info: struct address
-* @av: argument vector
+* set_info - starts format
+* @info: addressed structured
+* @av: vectored in argument
 */
 void set_info(info_t *info, char **av)
 {
@@ -39,9 +39,9 @@ replace_vars(info);
 }
 }
 /**
-* free_info - frees info_t struct fields
-* @info: struct address
-* @all: true if freeing all fields
+* free_info - makes spaced format
+* @info: addressed structure
+* @all: true if freed fields as whole
 */
 void free_info(info_t *info, int all)
 {
