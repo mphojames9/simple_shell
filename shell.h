@@ -103,7 +103,7 @@ record_m *add_node(record_m **, const char *, int);
 record_m *add_node_end(record_m **, const char *, int);
 size_t print_list_str(const record_m *);
 int node_at_index_deletion(record_m **, unsigned int);
-void free_list(record_m **);
+void unoccupied_list(record_m **);
 
 int hsh(particular_t *, char **);
 int builtin_locator(particular_t *);

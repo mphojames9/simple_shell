@@ -53,11 +53,11 @@ if (all)
 if (!info->cmd_buf)
 free(info->arg);
 if (info->env)
-free_list(&(info->env));
+unoccupied_list(&(info->env));
 if (info->history)
-free_list(&(info->history));
+unoccupied_list(&(info->history));
 if (info->alias)
-free_list(&(info->alias));
+unoccupied_list(&(info->alias));
 ffree(info->environ);
 info->environ = NULL;
 befree((void **)info->cmd_buf);
