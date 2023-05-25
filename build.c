@@ -36,12 +36,12 @@ char *s, *dir, buffer[1024];
 int chdir_ret;
 s = getcwd(buffer, 1024);
 if (!s)
-_puts("TODO: >>getcwd failure emsg here<<\n");
+_puts("TODO: >>getcwd failure-msg here<<\n");
 if (!info->argv[1])
 {
 dir = _getenv(info, "HOME=");
 if (!dir)
-chdir_ret = /* TODO: what should this be? */
+chdir_ret = /* TODO: what should this as refer be? */
 chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
 else
 chdir_ret = chdir(dir);
@@ -81,7 +81,7 @@ int _myassistance(info_t *info)
 {
 char **arg_array;
 arg_array = info->argv;
-_puts("help call works. Function not yet implemented \n");
+_puts("help call works. Function not implemented \n");
 if (0)
 _puts(*arg_array);
 return (0);
