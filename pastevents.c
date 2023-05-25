@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
-* get_history_file - gets the history file
-* @info: parameter struct
+* get_history_file - locates the past files
+* @info: format structure
 *
-* Return: allocated string containg history file
+* Return: string with the past event file
 */
 char *get_history_file(info_t *info)
 {
@@ -21,10 +21,10 @@ _strcat(buf, HIST_FILE);
 return (buf);
 }
 /**
-* history_writer - creates a file, or appends to an existing file
-* @info: the parameter struct
+* history_writer - makes file or adds to an existing file
+* @info: format structure
 *
-* Return: 1 on success, else -1
+* Return: 1 on successful, if not -1
 */
 int history_writer(info_t *info)
 {
@@ -47,10 +47,10 @@ close(fd);
 return (1);
 }
 /**
-* history_reader - reads history from file
-* @info: the parameter struct
+* history_reader - checks the past event files
+* @info: format structure
 *
-* Return: histcount on success, 0 otherwise
+* Return: pastevent tally on successful, if not 0
 */
 int history_reader(info_t *info)
 {
@@ -93,10 +93,10 @@ history_renumber(info);
 return (info->histcount);
 }
 /**
-* history_list_builder - adds entry to a history linked list
-* @info: Structure containing potential arguments. Used to maintain
-* @buf: buffer
-* @linecount: the history linecount, histcount
+* history_list_builder - additional to a pastevent linked list
+* @info: Structure with possible clash
+* @buf: buffer buffer
+* @linecount: pastevent line-count
 *
 * Return: Always 0
 */
@@ -111,10 +111,10 @@ info->history = node;
 return (0);
 }
 /**
-* history_renumber - renumbers the history linked list after changes
-* @info: Structure containing potential arguments. Used to maintain
+* history_renumber - give the pastevent linked list new numbers when changed
+* @info: Structure containing potential arguments. Used to maintainwith possible clash
 *
-* Return: the new histcount
+* Return: the current pastevent count
 */
 int history_renumber(info_t *info)
 {
