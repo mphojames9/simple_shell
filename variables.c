@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
-* chain_checker - test if current char in buffer is a chain delimeter
-* @info: the parameter struct
-* @buf: the char buffer
-* @p: address of current position in buf
+* chain_checker - chain delimeter buffer inspect
+* @info: the index struct
+* @buf: buffer char
+* @p: buf location
 *
-* Return: 1 if chain delimeter, 0 otherwise
+* Return: 1 if chain delimeter, 0 if else
 */
 int chain_checker(info_t *info, char *buf, size_t *p)
 {
@@ -22,9 +22,9 @@ buf[j] = 0;
 j++;
 info->cmd_buf_type = CMD_AND;
 }
-else if (buf[j] == ';') /* found end of this command */
+else if (buf[j] == ';')
 {
-buf[j] = 0; /* replace semicolon with null */
+buf[j] = 0;
 info->cmd_buf_type = CMD_CHAIN;
 }
 else
@@ -33,12 +33,12 @@ return (0);
 return (1);
 }
 /**
-* check_chain - checks we should continue chaining based on last status
-* @info: the parameter struct
-* @buf: the char buffer
-* @p: address of current position in buf
-* @i: starting position in buf
-* @len: length of buf
+* check_chain - inspect we should continue chaining based on last status
+* @info: the framework struct
+* @buf: buffer char
+* @p: position in buf current location
+* @i: buf starting location
+* @len: buf lengh
 *
 * Return: Void
 */
@@ -64,10 +64,10 @@ j = len;
 *p = j;
 }
 /**
-* alias_replacement - replaces an aliases in the tokenized string
+* alias_replacement - tokenized string alias_replacement
 * @info: the parameter struct
 *
-* Return: 1 if replaced, 0 otherwise
+* Return: 1 on success, 0 if else
 */
 int alias_replacement(info_t *info)
 {
@@ -91,10 +91,10 @@ info->argv[0] = p;
 return (1);
 }
 /**
-* replace_vars - replaces vars in the tokenized string
-* @info: the parameter struct
+* replace_vars - tokenized string vars replacement
+* @info: framework struct
 *
-* Return: 1 if replaced, 0 otherwise
+* Return: 1 on success , 0 if else
 */
 int replace_vars(info_t *info)
 {
@@ -128,11 +128,11 @@ string_replacement(&info->argv[i], _strdup(""));
 return (0);
 }
 /**
-* string_replacement - replaces string
-* @old: address of old string
+* string_replacement - string replacement
+* @old: old string location
 * @new: new string
 *
-* Return: 1 if replaced, 0 otherwise
+* Return: return 1 on success, 0 if fails
 */
 int string_replacement(char **old, char *new)
 {

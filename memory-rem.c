@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * befree - free a pointer and NULLifies the address
- * @ptr: address of the pointer that needs freeing
- * Return: 1 if free succesfully, if not 0
+ * befree - NULLifies the address to the location pointer is freed
+ * @ptr: pointer's address that needs freeing
+ * Return: 1 if succesfully, 0 om failer
  */
 int befree(void **ptr)
 {

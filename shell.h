@@ -10,19 +10,19 @@
 #include <limits.h>
 #include <fcntl.h>
 #include <errno.h>
-/* for read/write buffers */
+
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
-/* for command chaining */
+
 #define CMD_NORM 0
 #define CMD_OR 1
 #define CMD_AND 2
 #define CMD_CHAIN 3
-/* for convert_number() */
+
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
-/* 1 if using system getline() */
+
 #define USEgetline_checker 0
 #define USE_STRTOK 0
 #define HIST_FILE ".simple_shell_history"
@@ -30,9 +30,6 @@
 extern char **environ;
 /**
 * struct liststr - singly linked list
-* @num: the number field
-* @str: a string
-* @next: points to the next node
 */
 typedef struct liststr
 {
@@ -50,12 +47,20 @@ struct liststr *next;
 * @err_num: the mistake code for exit()s
 * @linecount_flag: line of input
 * @fname: program filename
+<<<<<<< HEAD
 * @env: copy of environ for linked list local
+=======
+* @env: copy of environ for linked list local 
+>>>>>>> 184d46bdc91863dc0e75e1b2becd3ec140bfa288
 * @environ: modified copy of environ from LL env
 * @history: history node
 * @alias: alias node
 * @env_changed: if environ was changed
+<<<<<<< HEAD
 * @status:last exec'd command return status
+=======
+* @status:last exec'd command return status 
+>>>>>>> 184d46bdc91863dc0e75e1b2becd3ec140bfa288
 * @cmd_buf: cmd_buf, on if chaining address of pointer
 * @cmd_buf_type: CMD_type ||, &&, ;
 * @readfd: read line input
@@ -87,7 +92,13 @@ int histcount;
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 0, 0, 0}
 /**
+<<<<<<< HEAD
 * struct builtin - contains a builtin string and related function
+=======
+* struct builtin - have a builtin string and related function
+* @type: command flag
+* @func: function
+>>>>>>> 184d46bdc91863dc0e75e1b2becd3ec140bfa288
 */
 typedef struct builtin
 {

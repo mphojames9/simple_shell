@@ -1,9 +1,9 @@
 #include "shell.h"
 /**	
-* add_node - adds a node to the start of the list
+* add_node - node to the start of the list is added
 * @head: address of pointer to head node
-* @str: str field of node
-* @num: node index used by history
+* @str: field of node srt
+* @num: node index 
 *
 * Return: size of list
 */
@@ -69,10 +69,10 @@ else
 return (new_node);
 }
 /**
-* print_list_str - prints only the str element of a record_m linked list
-* @h: pointer to first node
+* print_list_str - str element of a record_m linked list to be printed
+* @h: first node first node
 *
-* Return: size of list
+* Return: list size
 */
 size_t print_list_str(const record_m *h)
 {
@@ -87,11 +87,11 @@ i++;
 return (i);
 }
 /**
-* node_at_index_deletion - deletes node at given index
-* @head: address of pointer to first node
-* @index: index of node to delete
+* node_at_index_deletion - delete given
+* @head: pointer to 1st node
+* @index: node to delete index
 *
-* Return: 1 on success, 0 on failure
+* Return: 1 success, 0 if else
 */
 int node_at_index_deletion(record_m **head, unsigned int index)
 {
@@ -124,8 +124,8 @@ node = node->next;
 return (0);
 }
 /**
-* free_list - frees all nodes of a list
-* @head_ptr: address of pointer to head node
+* free_list - all nodes of a list are free
+* @head_ptr: location of pointer to head node
 *
 * Return: void
 */
