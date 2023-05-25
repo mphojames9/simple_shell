@@ -47,20 +47,14 @@ struct liststr *next;
 * @err_num: the mistake code for exit()s
 * @linecount_flag: line of input
 * @fname: program filename
-<<<<<<< HEAD
 * @env: copy of environ for linked list local
-=======
 * @env: copy of environ for linked list local 
->>>>>>> 184d46bdc91863dc0e75e1b2becd3ec140bfa288
 * @environ: modified copy of environ from LL env
 * @history: history node
 * @alias: alias node
-* @env_changed: if environ was changed
-<<<<<<< HEAD
+* @env_changed: if environ
 * @status:last exec'd command return status
-=======
 * @status:last exec'd command return status 
->>>>>>> 184d46bdc91863dc0e75e1b2becd3ec140bfa288
 * @cmd_buf: cmd_buf, on if chaining address of pointer
 * @cmd_buf_type: CMD_type ||, &&, ;
 * @readfd: read line input
@@ -92,13 +86,10 @@ int histcount;
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 0, 0, 0}
 /**
-<<<<<<< HEAD
 * struct builtin - contains a builtin string and related function
-=======
 * struct builtin - have a builtin string and related function
 * @type: command flag
 * @func: function
->>>>>>> 184d46bdc91863dc0e75e1b2becd3ec140bfa288
 */
 typedef struct builtin
 {
