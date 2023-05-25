@@ -3,7 +3,7 @@
 * clear_info - starts the format
 * @info: addressed structured
 */
-void clear_info(info_t *info)
+void clear_info(particular_t *info)
 {
 info->arg = NULL;
 info->argv = NULL;
@@ -15,7 +15,7 @@ info->argc = 0;
 * @info: addressed structured
 * @av: vectored in argument
 */
-void set_info(info_t *info, char **av)
+void set_info(particular_t *info, char **av)
 {
 int i = 0;
 info->fname = av[0];
@@ -43,7 +43,7 @@ replace_vars(info);
 * @info: addressed structure
 * @all: true if freed fields as whole
 */
-void free_info(info_t *info, int all)
+void free_info(particular_t *info, int all)
 {
 ffree(info->argv);
 info->argv = NULL;

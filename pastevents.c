@@ -5,7 +5,7 @@
 *
 * Return: string with the past event file
 */
-char *get_history_file(info_t *info)
+char *get_history_file(particular_t *info)
 {
 char *buf, *dir;
 dir = _getenv(info, "HOME=");
@@ -26,7 +26,7 @@ return (buf);
 *
 * Return: 1 on successful, if not -1
 */
-int history_writer(info_t *info)
+int history_writer(particular_t *info)
 {
 ssize_t fd;
 char *filename = get_history_file(info);
@@ -52,7 +52,7 @@ return (1);
 *
 * Return: pastevent tally on successful, if not 0
 */
-int history_reader(info_t *info)
+int history_reader(particular_t *info)
 {
 int i, last = 0, linecount = 0;
 ssize_t fd, rdlen, fsize = 0;
@@ -100,7 +100,7 @@ return (info->histcount);
 *
 * Return: Always 0
 */
-int history_list_builder(info_t *info, char *buf, int linecount)
+int history_list_builder(particular_t *info, char *buf, int linecount)
 {
 record_m *node = NULL;
 if (info->history)
@@ -116,7 +116,7 @@ return (0);
 *
 * Return: the current pastevent count
 */
-int history_renumber(info_t *info)
+int history_renumber(particular_t *info)
 {
 record_m *node = info->history;
 int i = 0;

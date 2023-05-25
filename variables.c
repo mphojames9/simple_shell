@@ -7,7 +7,7 @@
 *
 * Return: 1 if chain delimeter, 0 if else
 */
-int chain_checker(info_t *info, char *buf, size_t *p)
+int chain_checker(particular_t *info, char *buf, size_t *p)
 {
 size_t j = *p;
 if (buf[j] == '|' && buf[j + 1] == '|')
@@ -42,7 +42,7 @@ return (1);
 *
 * Return: Void
 */
-void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+void check_chain(particular_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
 size_t j = *p;
 if (info->cmd_buf_type == CMD_AND)
@@ -69,7 +69,7 @@ j = len;
 *
 * Return: 1 on success, 0 if else
 */
-int alias_replacement(info_t *info)
+int alias_replacement(particular_t *info)
 {
 int i;
 record_m *node;
@@ -96,7 +96,7 @@ return (1);
 *
 * Return: 1 on success , 0 if else
 */
-int replace_vars(info_t *info)
+int replace_vars(particular_t *info)
 {
 int i = 0;
 record_m *node;

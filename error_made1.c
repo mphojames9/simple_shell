@@ -32,7 +32,7 @@ return (result);
 * Return: 0 if no numbers found in string if not then convert the number
 * -1 on error given
 */
-void print_error(info_t *info, char *estr)
+void print_error(particular_t *info, char *estr)
 {
 _eputs(info->fname);
 _eputs(": ");

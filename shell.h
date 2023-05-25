@@ -77,7 +77,7 @@ char **cmd_buf;
 int cmd_buf_type;
 int readfd;
 int histcount;
-} info_t;
+} particular_t;
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 0, 0, 0}
@@ -90,7 +90,7 @@ int histcount;
 typedef struct builtin
 {
 char *type;
-int (*func)(info_t *);
+int (*func)(particular_t *);
 } builtin_table;
 
 size_t list_len(const record_m *);
@@ -105,24 +105,24 @@ size_t print_list_str(const record_m *);
 int node_at_index_deletion(record_m **, unsigned int);
 void free_list(record_m **);
 
-int hsh(info_t *, char **);
-int builtin_locator(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int hsh(particular_t *, char **);
+int builtin_locator(particular_t *);
+void find_cmd(particular_t *);
+void fork_cmd(particular_t *);
 
-char **get_environ(info_t *);
-int unsetenv2_checker(info_t *, char *);
-int setenv2_checker(info_t *, char *, char *);
+char **get_environ(particular_t *);
+int unsetenv2_checker(particular_t *, char *);
+int setenv2_checker(particular_t *, char *, char *);
 
-int cmd_checker(info_t *, char *);
+int cmd_checker(particular_t *, char *);
 char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+char *find_path(particular_t *, char *, char *);
 
-char *get_history_file(info_t *info);
-int history_writer(info_t *info);
-int history_reader(info_t *info);
-int history_list_builder(info_t *info, char *buf, int linecount);
-int history_renumber(info_t *info);
+char *get_history_file(particular_t *info);
+int history_writer(particular_t *info);
+int history_reader(particular_t *info);
+int history_list_builder(particular_t *info, char *buf, int linecount);
+int history_renumber(particular_t *info);
 
 int hsh_loop(char **);
 
@@ -136,10 +136,10 @@ int strcmp_char(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-int chain_checker(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int alias_replacement(info_t *);
-int replace_vars(info_t *);
+int chain_checker(particular_t *, char *, size_t *);
+void check_chain(particular_t *, char *, size_t *, size_t, size_t);
+int alias_replacement(particular_t *);
+int replace_vars(particular_t *);
 int string_replacement(char **, char *);
 
 char *_strcpy(char *, char *);
@@ -147,11 +147,11 @@ char *_strdup(const char *);
 void _puts(char *);
 int putchar_char(char);
 
-char *_getenv(info_t *, const char *);
-int env_checker(info_t *);
-int setenv_checker(info_t *);
-int unsetenv_checker(info_t *);
-int env_list_population(info_t *);
+char *_getenv(particular_t *, const char *);
+int env_checker(particular_t *);
+int setenv_checker(particular_t *);
+int unsetenv_checker(particular_t *);
+int env_list_population(particular_t *);
 
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
@@ -166,29 +166,29 @@ void *_realloc(void *, unsigned int, unsigned int);
 
 int befree(void **);
 
-int interactive_infor(info_t *);
+int interactive_infor(particular_t *);
 int delim_check(char, char *);
 int isalpha_check(int);
 int atoi_check(char *);
 
 int erratoi_check(char *);
-void print_error(info_t *, char *);
+void print_error(particular_t *, char *);
 int printing_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-int _myevacuate(info_t *);
-int cd_change(info_t *);
-int _myassistance(info_t *);
+int _myevacuate(particular_t *);
+int cd_change(particular_t *);
+int _myassistance(particular_t *);
 
-int history_checker(info_t *);
-int alias_checker(info_t *);
+int history_checker(particular_t *);
+int alias_checker(particular_t *);
 
-ssize_t get_input(info_t *);
-int getline_checker(info_t *, char **, size_t *);
+ssize_t get_input(particular_t *);
+int getline_checker(particular_t *, char **, size_t *);
 void sigintHandler(int);
 
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void clear_info(particular_t *);
+void set_info(particular_t *, char **);
+void free_info(particular_t *, int);
 #endif

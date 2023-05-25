@@ -7,7 +7,7 @@
 *
 * Return: bytes read read
 */
-ssize_t input_buf(info_t *info, char **buf, size_t *len)
+ssize_t input_buf(particular_t *info, char **buf, size_t *len)
 {
 ssize_t r = 0;
 size_t len_p = 0;
@@ -47,7 +47,7 @@ return (r);
 *
 * Return: bytes read read
 */
-ssize_t get_input(info_t *info)
+ssize_t get_input(particular_t *info)
 {
 static char *buf; /* the ';' command chain chained buffer */
 static size_t i, j, len;
@@ -88,7 +88,7 @@ return (r); /* return length of buffered with from getline_checker() */
 *
 * Return: r as valid
 */
-ssize_t read_buf(info_t *info, char *buf, size_t *i)
+ssize_t read_buf(particular_t *info, char *buf, size_t *i)
 {
 ssize_t r = 0;
 if (*i)
@@ -106,7 +106,7 @@ return (r);
 *
 * Return: s as valid
 */
-int getline_checker(info_t *info, char **ptr, size_t *length)
+int getline_checker(particular_t *info, char **ptr, size_t *length)
 {
 static char buf[READ_BUF_SIZE];
 static size_t i, len;

@@ -5,7 +5,7 @@
 *
 * Return: 1 if interactive_infor mode, 0 if not
 */
-int interactive_infor(info_t *info)
+int interactive_infor(particular_t *info)
 {
 return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }

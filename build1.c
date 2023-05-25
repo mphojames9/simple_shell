@@ -4,7 +4,7 @@
 * @info: Structure with possible clash
 * Return: Always 0 when successful
 */
-int history_checker(info_t *info)
+int history_checker(particular_t *info)
 {
 print_list(info->history);
 return (0);
@@ -16,7 +16,7 @@ return (0);
 *
 * Return: Always 0 on successful completion, 1 on error returned
 */
-int unset_alias(info_t *info, char *str)
+int unset_alias(particular_t *info, char *str)
 {
 char *p, c;
 int ret;
@@ -37,7 +37,7 @@ return (ret);
 *
 * Return: Always 0 on success, 1 on error
 */
-int set_alias(info_t *info, char *str)
+int set_alias(particular_t *info, char *str)
 {
 char *p;
 p = _strchr(str, '=');
@@ -74,7 +74,7 @@ return (1);
 * @info: possible clash
 * Return: Always 0 for success
 */
-int alias_checker(info_t *info)
+int alias_checker(particular_t *info)
 {
 int i = 0;
 char *p = NULL;

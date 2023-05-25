@@ -4,7 +4,7 @@
 * @info: format
 * Return: Always 0
 */
-char **get_environ(info_t *info)
+char **get_environ(particular_t *info)
 {
 if (!info->environ || info->env_changed)
 {
@@ -19,7 +19,7 @@ return (info->environ);
 * Return: 1 on sure delete, if not 0
 * @var: environmental variable stringed property
 */
-int unsetenv2_checker(info_t *info, char *var)
+int unsetenv2_checker(particular_t *info, char *var)
 {
 record_m *node = info->env;
 size_t i = 0;
@@ -48,7 +48,7 @@ return (info->env_changed);
 * @value: environmental variable stringed value
 * Return: Always if true and valid 0
 */
-int setenv2_checker(info_t *info, char *var, char *value)
+int setenv2_checker(particular_t *info, char *var, char *value)
 {
 char *buf = NULL;
 record_m *node;

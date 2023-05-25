@@ -5,7 +5,7 @@
 * Return: exit as an exited stat
 * (0) if info.argv[0] != "exit"
 */
-int _myevacuate(info_t *info)
+int _myevacuate(particular_t *info)
 {
 int exitcheck;
 if (info->argv[1])
@@ -30,7 +30,7 @@ return (-2);
 * @info: Structure with possible clash
 * Return: Always 0 when successful
 */
-int cd_change(info_t *info)
+int cd_change(particular_t *info)
 {
 char *s, *dir, buffer[1024];
 int chdir_ret;
@@ -77,7 +77,7 @@ return (0);
 * @info: Structure with possible clash
 * Return: Always 0 if successful completed
 */
-int _myassistance(info_t *info)
+int _myassistance(particular_t *info)
 {
 char **arg_array;
 arg_array = info->argv;

@@ -7,7 +7,7 @@
 *
 * Return: 1 if true, 0 otherwise
 */
-int cmd_checker(info_t *info, char *path)
+int cmd_checker(particular_t *info, char *path)
 {
 struct stat st;
 (void)info;
@@ -45,7 +45,7 @@ return (buf);
 *
 * Return: cmd if found or NULL
 */
-char *find_path(info_t *info, char *pathstr, char *cmd)
+char *find_path(particular_t *info, char *pathstr, char *cmd)
 {
 int i = 0, curr_pos = 0;
 char *path;

@@ -4,7 +4,7 @@
 * @info: format
 * Return: Always 0 if valid
 */
-int env_checker(info_t *info)
+int env_checker(particular_t *info)
 {
 print_list_str(info->env);
 return (0);
@@ -16,7 +16,7 @@ return (0);
 *
 * Return: the value as at when valid
 */
-char *_getenv(info_t *info, const char *name)
+char *_getenv(particular_t *info, const char *name)
 {
 record_m *node = info->env;
 char *p;
@@ -34,7 +34,7 @@ return (NULL);
 * @info: format
 * Return: Always 0 as at when valid
 */
-int setenv_checker(info_t *info)
+int setenv_checker(particular_t *info)
 {
 if (info->argc != 3)
 {
@@ -50,7 +50,7 @@ return (1);
 * @info: format
 * Return: Always 0 if valid
 */
-int unsetenv_checker(info_t *info)
+int unsetenv_checker(particular_t *info)
 {
 int i;
 if (info->argc == 1)
@@ -67,7 +67,7 @@ return (0);
 * @info: format
 * Return: Always 0 if valid
 */
-int env_list_population(info_t *info)
+int env_list_population(particular_t *info)
 {
 record_m *node = NULL;
 size_t i;
