@@ -1,15 +1,14 @@
 #include "shell.h"
 /**
-* _myevacuate - exits the shell
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: exits with a given exit status
+* _myevacuate - leaves shell
+* @info: Structure with possible clash
+* Return: exit as an exited stat
 * (0) if info.argv[0] != "exit"
 */
 int _myevacuate(info_t *info)
 {
 int exitcheck;
-if (info->argv[1]) /* If there is an exit arguement */
+if (info->argv[1])
 {
 exitcheck = erratoi_check(info->argv[1]);
 if (exitcheck == -1)
@@ -27,10 +26,9 @@ info->err_num = -1;
 return (-2);
 }
 /**
-* cd_change - changes the current directory of the process
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* cd_change - gets the current directory into another
+* @info: Structure with possible clash
+* Return: Always 0 when successful
 */
 int cd_change(info_t *info)
 {
@@ -75,10 +73,9 @@ setenv2_checker(info, "PWD", getcwd(buffer, 1024));
 return (0);
 }
 /**
-* _myassistance - changes the current directory of the process
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* _myassistance - reshuffle the working directory
+* @info: Structure with possible clash
+* Return: Always 0 if successful completed
 */
 int _myassistance(info_t *info)
 {
@@ -86,6 +83,6 @@ char **arg_array;
 arg_array = info->argv;
 _puts("help call works. Function not yet implemented \n");
 if (0)
-_puts(*arg_array); /* temp att_unused workaround */
+_puts(*arg_array);
 return (0);
 }
