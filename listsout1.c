@@ -1,9 +1,10 @@
 #include "shell.h"
 /**
-* list_len - determines length of linked list
-* @h: pointer to first node
+* list_len - length of linked list to determine
 *
-* Return: size of list
+* @h: first node pointer
+*
+* Return: list size
 */
 size_t list_len(const record_m *h)
 {
@@ -16,7 +17,8 @@ i++;
 return (i);
 }
 /**
-* record_mo_strings - returns an array of strings of the list->str
+* record_mo_strings - array of strings of the list->str is returned
+*
 * @head: pointer to first node
 *
 * Return: array of strings
@@ -49,10 +51,11 @@ strs[i] = NULL;
 return (strs);
 }
 /**
-* print_list - prints all elements of a record_m linked list
-* @h: pointer to first node
+* print_list - elements of a record_m linked list are printed
 *
-* Return: size of list
+* @h: first node pointer
+*
+* Return: list size
 */
 size_t print_list(const record_m *h)
 {
@@ -70,10 +73,11 @@ i++;
 return (i);
 }
 /**
-* node_starts_with - returns node whose string starts with prefix
-* @node: pointer to list head
-* @prefix: string to match
-* @c: the next character after prefix to match
+* node_starts_with - string starts with prefix is returned
+*
+* @node: list head poiter
+* @prefix: matched string
+* @c: character after prefix to be match
 *
 * Return: match node or null
 */
@@ -90,7 +94,8 @@ node = node->next;
 return (NULL);
 }
 /**
-* get_node_index - gets the index of a node
+* get_node_index - index of a node
+*
 * @head: pointer to list head
 * @node: pointer to the node
 *
