@@ -38,27 +38,26 @@ char *str;
 struct liststr *next;
 } record_m;
 /**
-* struct passinfo - have pseudo-arguements that pases the function
-* @arg: a string
-* @argv:an strings created from arg
-* @path: current command string paff
-* @argc: argument count
-* @line_count: mistake count
-* @err_num: the mistake code for exit()s
-* @linecount_flag: line of input
-* @fname: program filename
 * @env: copy of environ for linked list local
-* @env: copy of environ for linked list local 
+* @env: copy of environ for linked list local
 * @environ: modified copy of environ from LL env
 * @history: history node
 * @alias: alias node
 * @env_changed: if environ
 * @status:last exec'd command return status
-* @status:last exec'd command return status 
 * @cmd_buf: cmd_buf, on if chaining address of pointer
 * @cmd_buf_type: CMD_type ||, &&, ;
 * @readfd: read line input
 * @histcount: history line num count
+* @line_count: mistake count
+* @err_num: the mistake code for exit()s
+* @linecount_flag: line of input
+* @fname: program filename
+* struct passinfo - have pseudo-arguements that pases the function
+* @arg: a string
+* @argv:an strings created from arg
+* @path: current command string paff
+* @argc: argument count
 */
 
 typedef struct passinfo
@@ -151,6 +150,12 @@ char *_strdup(const char *);
 void _puts(char *);
 int putchar_char(char);
 
+char *_getenv(info_t *, const char *);
+int env_checker(info_t *);
+int setenv_checker(info_t *);
+int unsetenv_checker(info_t *);
+int env_list_population(info_t *);
+
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
@@ -189,10 +194,4 @@ void sigintHandler(int);
 void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
-
-char *_getenv(info_t *, const char *);
-int env_checker(info_t *);
-int setenv_checker(info_t *);
-int unsetenv_checker(info_t *);
-int env_list_population(info_t *);
 #endif
