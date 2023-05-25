@@ -1,9 +1,8 @@
 #include "shell.h"
 /**
-* env_checker - prints the current environment
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* env_checker - gets the environment as at now
+* @info: format
+* Return: Always 0 if valid
 */
 int env_checker(info_t *info)
 {
@@ -11,11 +10,11 @@ print_list_str(info->env);
 return (0);
 }
 /**
-* _getenv - gets the value of an environ variable
-* @info: Structure containing potential arguments. Used to maintain
-* @name: env var name
+* _getenv - value of an environmental variable is gotten
+* @info: format
+* @name: named environmental variable
 *
-* Return: the value
+* Return: the value as at when valid
 */
 char *_getenv(info_t *info, const char *name)
 {
@@ -31,17 +30,15 @@ node = node->next;
 return (NULL);
 }
 /**
-* setenv_checker - Initialize a new environment variable,
-* or modify an existing one
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* setenv_checker - get the environmental variable or change previous
+* @info: format
+* Return: Always 0 as at when valid
 */
 int setenv_checker(info_t *info)
 {
 if (info->argc != 3)
 {
-_eputs("Incorrect number of arguements\n");
+_eputs("Incorrect numberer of arguments\n");
 return (1);
 }
 if (setenv2_checker(info, info->argv[1], info->argv[2]))
@@ -49,10 +46,9 @@ return (0);
 return (1);
 }
 /**
-* unsetenv_checker - Remove an environment variable
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* unsetenv_checker - deletes environment variable
+* @info: format
+* Return: Always 0 if valid
 */
 int unsetenv_checker(info_t *info)
 {
@@ -67,10 +63,9 @@ unsetenv2_checker(info, info->argv[i]);
 return (0);
 }
 /**
-* env_list_population - populates env linked list
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* env_list_population - populates environmental linked-list
+* @info: format
+* Return: Always 0 if valid
 */
 int env_list_population(info_t *info)
 {
