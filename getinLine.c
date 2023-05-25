@@ -1,17 +1,17 @@
 #include "shell.h"
 /**
-* input_buf - buffers chained commands
-* @info: parameter struct
-* @buf: address of buffer
-* @len: address of len var
+* input_buf - buffered commanded chain
+* @info: format
+* @buf: buffer location
+* @len: address where the length variable stays
 *
-* Return: bytes read
+* Return: bytes read read
 */
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 ssize_t r = 0;
 size_t len_p = 0;
-if (!*len) /* if nothing left in the buffer, fill it */
+if (!*len)
 {
 /*befree((void **)info->cmd_buf);*/
 free(*buf);
@@ -26,13 +26,13 @@ if (r > 0)
 {
 if ((*buf)[r - 1] == '\n')
 {
-(*buf)[r - 1] = '\0'; /* remove trailing newline */
+(*buf)[r - 1] = '\0'; /* remove trailing newline new */
 r--;
 }
 info->linecount_flag = 1;
 remove_comments(*buf);
 history_list_builder(info, *buf, info->histcount++);
-/* if (_strchr(*buf, ';')) is this a command chain? */
+/* if (_strchr(*buf, ';')) is this a command chain as is? */
 {
 *len = r;
 info->cmd_buf = buf;
@@ -42,14 +42,14 @@ info->cmd_buf = buf;
 return (r);
 }
 /**
-* get_input - gets a line minus the newline
-* @info: parameter struct
+* get_input - brings a line subtracting the newline
+* @info: format
 *
-* Return: bytes read
+* Return: bytes read read
 */
 ssize_t get_input(info_t *info)
 {
-static char *buf; /* the ';' command chain buffer */
+static char *buf; /* the ';' command chain chained buffer */
 static size_t i, j, len;
 ssize_t r = 0;
 char **buf_p = &(info->arg), *p;
@@ -57,36 +57,36 @@ putchar_char(BUF_FLUSH);
 r = input_buf(info, &buf, &len);
 if (r == -1) /* EOF */
 return (-1);
-if (len) /* we have commands left in the chain buffer */
+if (len) /* we have commands as left in the chain buffer */
 {
-j = i; /* init new iterator to current buf position */
-p = buf + i; /* get pointer for return */
+j = i; /* init new iterator to current buffered position */
+p = buf + i; /* get pointer pointing for return */
 check_chain(info, buf, &j, i, len);
-while (j < len) /* iterate to semicolon or end */
+while (j < len) /* iterate to for semicolon or end */
 {
 if (chain_checker(info, buf, &j))
 break;
 j++;
 }
-i = j + 1; /* increment past nulled ';'' */
-if (i >= len) /* reached end of buffer? */
+i = j + 1; /* increment also past nulled ';'' */
+if (i >= len) /* reached the finishend of buffer? */
 {
-i = len = 0; /* reset position and length */
+i = len = 0; /* reset positioned with and length */
 info->cmd_buf_type = CMD_NORM;
 }
-*buf_p = p; /* pass back pointer to current command position */
-return (strlen_char(p)); /* return length of current command */
+*buf_p = p; /* pass back pointer to current commanded form position */
+return (strlen_char(p)); /* return length figures for current command */
 }
-*buf_p = buf; /* else not a chain, pass back buffer from getline_checker() */
-return (r); /* return length of buffer from getline_checker() */
+*buf_p = buf; /* else not a chain, pass back buffer with the from getline_checker() */
+return (r); /* return length of buffered with from getline_checker() */
 }
 /**
-* read_buf - reads a buffer
-* @info: parameter struct
-* @buf: buffer
-* @i: size
+* read_buf - check buffer
+* @info: format
+* @buf: buffer buffered
+* @i: size sizee
 *
-* Return: r
+* Return: r as valid
 */
 ssize_t read_buf(info_t *info, char *buf, size_t *i)
 {
@@ -99,12 +99,12 @@ if (r >= 0)
 return (r);
 }
 /**
-* getline_checker - gets the next line of input from STDIN
-* @info: parameter struct
-* @ptr: address of pointer to buffer, preallocated or NULL
-* @length: size of preallocated ptr buffer if not NULL
+* getline_checker - gets the next line of input from STanDardINput
+* @info:format
+* @ptr: address of pointer pointing to buffer preallocated and/or NULLified
+* @length: size of preallocated pointer buffered if not NULLified
 *
-* Return: s
+* Return: s as valid
 */
 int getline_checker(info_t *info, char **ptr, size_t *length)
 {
