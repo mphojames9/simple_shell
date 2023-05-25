@@ -1,10 +1,8 @@
 #include "shell.h"
 /**
-* history_checker - displays the history list, one command by line, preceded
-* with line numbers, starting at 0.
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* history_checker - views past events
+* @info: Structure with possible clash
+* Return: Always 0 when successful
 */
 int history_checker(info_t *info)
 {
@@ -12,11 +10,11 @@ print_list(info->history);
 return (0);
 }
 /**
-* unset_alias - sets alias to string
-* @info: parameter struct
-* @str: the string alias
+* unset_alias - stringed with another name
+* @info: format
+* @str: another name for the string
 *
-* Return: Always 0 on success, 1 on error
+* Return: Always 0 on successful completion, 1 on error returned
 */
 int unset_alias(info_t *info, char *str)
 {
@@ -33,9 +31,9 @@ get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 return (ret);
 }
 /**
-* set_alias - sets alias to string
-* @info: parameter struct
-* @str: the string alias
+* set_alias - give a another name to the 
+* @info: format
+* @str: naming in another format
 *
 * Return: Always 0 on success, 1 on error
 */
@@ -51,10 +49,10 @@ unset_alias(info, str);
 return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 /**
-* print_alias - prints an alias string
-* @node: the alias node
+* print_alias - out screen sho of the string
+* @node: node
 *
-* Return: Always 0 on success, 1 on error
+* Return: Always 0 on successful completion, 1 if not
 */
 int print_alias(record_m *node)
 {
@@ -72,10 +70,9 @@ return (0);
 return (1);
 }
 /**
-* alias_checker - mimics the alias builtin (man alias)
-* @info: Structure containing potential arguments. Used to maintain
-* constant function prototype.
-* Return: Always 0
+* alias_checker - checker for the other names
+* @info: possible clash
+* Return: Always 0 for success
 */
 int alias_checker(info_t *info)
 {
