@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-* erratoi_check - changes string to integer
+* erratoi_check - changes string to integerr
 * @s: string for to be converted
 * Return: 0 if no there are no numbers in string if not convert the number
 * -1 on error given
