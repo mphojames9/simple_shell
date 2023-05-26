@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-* input_buf - buffered commanded chain
+* input_buf - buffered commanded chainn
 * @prime: format
 * @buf: buffer location
 * @len: address where the length variable stays
