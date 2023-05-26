@@ -111,7 +111,8 @@ if (sign)
 return (ptr);
 }
 /**
-* remove_comments - this function replaces the first instance occurence of '#' with '\0'
+* remove_comments - this function replaces the first
+* instance occurence of '#' with '\0'
 * @buf: address of the string for modification
 *
 * Return: Always 0 when valid;

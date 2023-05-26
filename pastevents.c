@@ -111,7 +111,8 @@ prime->history = node;
 return (0);
 }
 /**
-* history_renumberber - give the pastevent linked list new numberbers when changed
+* history_renumber - give the pastevent linked list
+* new numberbers when changed or modified
 * @prime: Structure with possible clash
 *
 * Return: the current pastevent count

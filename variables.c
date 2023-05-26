@@ -42,7 +42,8 @@ return (1);
 *
 * Return: Void
 */
-void check_chain(particular_t *prime, char *buf, size_t *p, size_t i, size_t len)
+void check_chain(particular_t *prime, char *buf, size_t *p,
+size_t i, size_t len)
 {
 size_t j = *p;
 if (prime->cmd_buf_type == CMD_AND)

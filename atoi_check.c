@@ -1,6 +1,7 @@
 #include "shell.h"
 /**
-* interactive_primer - returns true and valid if shell is interactive_primer mode
+* interactive_primer - returns true and valid,
+* if shell is interactive_primer mode
 * @prime: struct address
 *
 * Return: 1 if interactive_primer mode, 0 if not
