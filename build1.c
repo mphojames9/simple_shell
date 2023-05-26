@@ -31,7 +31,7 @@ get_node_index(prime->alias, node_starts_with(prime->alias, str, -1)));
 return (ret);
 }
 /**
-* set_alias - give a another name to the 
+* set_alias - give a another name to the
 * @prime: format
 * @str: naming in another format
 *

@@ -1,9 +1,9 @@
 #include "shell.h"
-/**	
+/**
 * add_node - node to the start of the list is added
 * @head: address of pointer to head node
 * @str: field of node srt
-* @number: node index 
+* @number: node index
 *
 * Return: size of list
 */
@@ -133,7 +133,7 @@ void untenanted_record(record_m **head_ptr)
 {
 record_m *node, *next_node, *head;
 if (!head_ptr || !*head_ptr)
-return; 
+return;
 head = *head_ptr;
 node = head;
 while (node)
