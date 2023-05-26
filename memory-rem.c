@@ -5,6 +5,7 @@
  * @ptr: pointer's address that needs freeing
  * Return: 1 if succesfully, 0 om failer
  */
+
 int befree(void **ptr)
 {
 	if (ptr && *ptr)
