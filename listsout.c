@@ -124,12 +124,12 @@ node = node->next;
 return (0);
 }
 /**
-* unoccupied_list - all nodes of a list are free
+* untenanted_record - all nodes of a list are free
 * @head_ptr: location of pointer to head node
 *
 * Return: void
 */
-void unoccupied_list(record_m **head_ptr)
+void untenanted_record(record_m **head_ptr)
 {
 record_m *node, *next_node, *head;
 if (!head_ptr || !*head_ptr)

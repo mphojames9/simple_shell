@@ -53,11 +53,11 @@ if (all)
 if (!info->cmd_buf)
 free(info->arg);
 if (info->env)
-unoccupied_list(&(info->env));
+untenanted_record(&(info->env));
 if (info->history)
-unoccupied_list(&(info->history));
+untenanted_record(&(info->history));
 if (info->alias)
-unoccupied_list(&(info->alias));
+untenanted_record(&(info->alias));
 ffree(info->environ);
 info->environ = NULL;
 befree((void **)info->cmd_buf);
