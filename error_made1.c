@@ -27,18 +27,18 @@ return (result);
 }
 /**
 * print_error - error message notificator
-* @info: format and return form
+* @prime: format and return form
 * @estr: string containing type error specificity
 * Return: 0 if no numbers found in string if not then convert the number
 * -1 on error given
 */
-void print_error(particular_t *info, char *estr)
+void print_error(particular_t *prime, char *estr)
 {
-_eputs(info->fname);
+_eputs(prime->fname);
 _eputs(": ");
-printing_d(info->line_count, STDERR_FILENO);
+printing_d(prime->line_count, STDERR_FILENO);
 _eputs(": ");
-_eputs(info->argv[0]);
+_eputs(prime->argv[0]);
 _eputs(": ");
 _eputs(estr);
 }

@@ -1,68 +1,68 @@
 #include "shell.h"
 /**
-* clear_info - starts the format
-* @info: addressed structured
+* clear_prime - starts the format
+* @prime: addressed structured
 */
-void clear_info(particular_t *info)
+void clear_prime(particular_t *prime)
 {
-info->arg = NULL;
-info->argv = NULL;
-info->path = NULL;
-info->argc = 0;
+prime->arg = NULL;
+prime->argv = NULL;
+prime->path = NULL;
+prime->argc = 0;
 }
 /**
-* set_info - starts format
-* @info: addressed structured
+* set_prime - starts format
+* @prime: addressed structured
 * @av: vectored in argument
 */
-void set_info(particular_t *info, char **av)
+void set_prime(particular_t *prime, char **av)
 {
 int i = 0;
-info->fname = av[0];
-if (info->arg)
+prime->fname = av[0];
+if (prime->arg)
 {
-info->argv = strtow(info->arg, " \t");
-if (!info->argv)
+prime->argv = strtow(prime->arg, " \t");
+if (!prime->argv)
 {
-info->argv = malloc(sizeof(char *) * 2);
-if (info->argv)
+prime->argv = malloc(sizeof(char *) * 2);
+if (prime->argv)
 {
-info->argv[0] = _strdup(info->arg);
-info->argv[1] = NULL;
+prime->argv[0] = _strdup(prime->arg);
+prime->argv[1] = NULL;
 }
 }
-for (i = 0; info->argv && info->argv[i]; i++)
+for (i = 0; prime->argv && prime->argv[i]; i++)
 ;
-info->argc = i;
-alias_replacement(info);
-replace_vars(info);
+prime->argc = i;
+alias_replacement(prime);
+replace_vars(prime);
 }
 }
 /**
-* free_info - makes spaced format
-* @info: addressed structure
+* free_prime - makes spaced format
+* @prime: addressed structure
 * @all: true if freed fields as whole
 */
-void free_info(particular_t *info, int all)
+void free_prime(particular_t *prime, int all)
 {
-ffree(info->argv);
-info->argv = NULL;
-info->path = NULL;
+ffree(prime->argv);
+prime->argv = NULL;
+prime->path = NULL;
 if (all)
 {
-if (!info->cmd_buf)
-free(info->arg);
-if (info->env)
-untenanted_record(&(info->env));
-if (info->history)
-untenanted_record(&(info->history));
-if (info->alias)
-untenanted_record(&(info->alias));
-ffree(info->environ);
-info->environ = NULL;
-befree((void **)info->cmd_buf);
-if (info->readfd > 2)
-close(info->readfd);
+if (!prime->cmd_buf)
+free(prime->arg);
+if (prime->env)
+untenanted_record(&(prime->env));
+if (prime->history)
+untenanted_record(&(prime->history));
+if (prime->alias)
+untenanted_record(&(prime->alias));
+ffree(prime->environ);
+prime->environ = NULL;
+befree((void **)prime->cmd_buf);
+if (prime->readfd > 2)
+close(prime->readfd);
 putchar_char(BUF_FLUSH);
 }
 }

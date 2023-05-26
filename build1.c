@@ -1,22 +1,22 @@
 #include "shell.h"
 /**
 * history_checker - views past events
-* @info: Structure with possible clash
+* @prime: Structure with possible clash
 * Return: Always 0 when successful
 */
-int history_checker(particular_t *info)
+int history_checker(particular_t *prime)
 {
-print_list(info->history);
+print_list(prime->history);
 return (0);
 }
 /**
 * unset_alias - stringed with another name
-* @info: format
+* @prime: format
 * @str: another name for the string
 *
 * Return: Always 0 on successful completion, 1 on error returned
 */
-int unset_alias(particular_t *info, char *str)
+int unset_alias(particular_t *prime, char *str)
 {
 char *p, c;
 int ret;
@@ -25,28 +25,28 @@ if (!p)
 return (1);
 c = *p;
 *p = 0;
-ret = node_at_index_deletion(&(info->alias),
-get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+ret = node_at_index_deletion(&(prime->alias),
+get_node_index(prime->alias, node_starts_with(prime->alias, str, -1)));
 *p = c;
 return (ret);
 }
 /**
 * set_alias - give a another name to the 
-* @info: format
+* @prime: format
 * @str: naming in another format
 *
 * Return: Always 0 on success, 1 on error
 */
-int set_alias(particular_t *info, char *str)
+int set_alias(particular_t *prime, char *str)
 {
 char *p;
 p = _strchr(str, '=');
 if (!p)
 return (1);
 if (!*++p)
-return (unset_alias(info, str));
-unset_alias(info, str);
-return (add_node_end(&(info->alias), str, 0) == NULL);
+return (unset_alias(prime, str));
+unset_alias(prime, str);
+return (add_node_end(&(prime->alias), str, 0) == NULL);
 }
 /**
 * print_alias - out screen sho of the string
@@ -71,17 +71,17 @@ return (1);
 }
 /**
 * alias_checker - checker for the other names
-* @info: possible clash
+* @prime: possible clash
 * Return: Always 0 for success
 */
-int alias_checker(particular_t *info)
+int alias_checker(particular_t *prime)
 {
 int i = 0;
 char *p = NULL;
 record_m *node = NULL;
-if (info->argc == 1)
+if (prime->argc == 1)
 {
-node = info->alias;
+node = prime->alias;
 while (node)
 {
 print_alias(node);
@@ -89,13 +89,13 @@ node = node->next;
 }
 return (0);
 }
-for (i = 1; info->argv[i]; i++)
+for (i = 1; prime->argv[i]; i++)
 {
-p = _strchr(info->argv[i], '=');
+p = _strchr(prime->argv[i], '=');
 if (p)
-set_alias(info, info->argv[i]);
+set_alias(prime, prime->argv[i]);
 else
-print_alias(node_starts_with(info->alias, info->argv[i], '='));
+print_alias(node_starts_with(prime->alias, prime->argv[i], '='));
 }
 return (0);
 }

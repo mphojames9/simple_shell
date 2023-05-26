@@ -1,14 +1,14 @@
 #include "shell.h"
 /**
 * get_history_file - locates the past files
-* @info: format structure
+* @prime: format structure
 *
 * Return: string with the past event file
 */
-char *get_history_file(particular_t *info)
+char *get_history_file(particular_t *prime)
 {
 char *buf, *dir;
-dir = _getenv(info, "HOME=");
+dir = _getenv(prime, "HOME=");
 if (!dir)
 return (NULL);
 buf = malloc(sizeof(char) * (strlen_char(dir) + strlen_char(HIST_FILE) + 2));
@@ -22,14 +22,14 @@ return (buf);
 }
 /**
 * history_writer - makes file or adds to an existing file
-* @info: format structure
+* @prime: format structure
 *
 * Return: 1 on successful, if not -1
 */
-int history_writer(particular_t *info)
+int history_writer(particular_t *prime)
 {
 ssize_t fd;
-char *filename = get_history_file(info);
+char *filename = get_history_file(prime);
 record_m *node = NULL;
 if (!filename)
 return (-1);
@@ -37,7 +37,7 @@ fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
 free(filename);
 if (fd == -1)
 return (-1);
-for (node = info->history; node; node = node->next)
+for (node = prime->history; node; node = node->next)
 {
 putsfd_char(node->str, fd);
 putfd_char('\n', fd);
@@ -48,16 +48,16 @@ return (1);
 }
 /**
 * history_reader - checks the past event files
-* @info: format structure
+* @prime: format structure
 *
 * Return: pastevent tally on successful, if not 0
 */
-int history_reader(particular_t *info)
+int history_reader(particular_t *prime)
 {
 int i, last = 0, linecount = 0;
 ssize_t fd, rdlen, fsize = 0;
 struct stat st;
-char *buf = NULL, *filename = get_history_file(info);
+char *buf = NULL, *filename = get_history_file(prime);
 if (!filename)
 return (0);
 fd = open(filename, O_RDONLY);
@@ -80,50 +80,50 @@ for (i = 0; i < fsize; i++)
 if (buf[i] == '\n')
 {
 buf[i] = 0;
-history_list_builder(info, buf + last, linecount++);
+history_list_builder(prime, buf + last, linecount++);
 last = i + 1;
 }
 if (last != i)
-history_list_builder(info, buf + last, linecount++);
+history_list_builder(prime, buf + last, linecount++);
 free(buf);
-info->histcount = linecount;
-while (info->histcount-- >= HIST_MAX)
-node_at_index_deletion(&(info->history), 0);
-history_renumber(info);
-return (info->histcount);
+prime->histcount = linecount;
+while (prime->histcount-- >= HIST_MAX)
+node_at_index_deletion(&(prime->history), 0);
+history_renumber(prime);
+return (prime->histcount);
 }
 /**
 * history_list_builder - additional to a pastevent linked list
-* @info: Structure with possible clash
+* @prime: Structure with possible clash
 * @buf: buffer buffer
 * @linecount: pastevent line-count
 *
 * Return: Always 0
 */
-int history_list_builder(particular_t *info, char *buf, int linecount)
+int history_list_builder(particular_t *prime, char *buf, int linecount)
 {
 record_m *node = NULL;
-if (info->history)
-node = info->history;
+if (prime->history)
+node = prime->history;
 add_node_end(&node, buf, linecount);
-if (!info->history)
-info->history = node;
+if (!prime->history)
+prime->history = node;
 return (0);
 }
 /**
 * history_renumber - give the pastevent linked list new numbers when changed
-* @info: Structure containing potential arguments. Used to maintainwith possible clash
+* @prime: Structure containing potential arguments. Used to maintainwith possible clash
 *
 * Return: the current pastevent count
 */
-int history_renumber(particular_t *info)
+int history_renumber(particular_t *prime)
 {
-record_m *node = info->history;
+record_m *node = prime->history;
 int i = 0;
 while (node)
 {
 node->num = i++;
 node = node->next;
 }
-return (info->histcount = i);
+return (prime->histcount = i);
 }

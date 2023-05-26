@@ -1,13 +1,13 @@
 #include "shell.h"
 /**
-* interactive_infor - returns true and valid if shell is interactive_infor mode
-* @info: struct address
+* interactive_primer - returns true and valid if shell is interactive_primer mode
+* @prime: struct address
 *
-* Return: 1 if interactive_infor mode, 0 if not
+* Return: 1 if interactive_primer mode, 0 if not
 */
-int interactive_infor(particular_t *info)
+int interactive_primer(particular_t *prime)
 {
-return (isatty(STDIN_FILENO) && info->readfd <= 2);
+return (isatty(STDIN_FILENO) && prime->readfd <= 2);
 }
 /**
 * delim_check - checks delimeter attribute of the character

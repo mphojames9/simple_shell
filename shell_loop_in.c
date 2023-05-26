@@ -2,56 +2,56 @@
 /**
 * hsh - shell loop
 *
-* @info: treturn info struct
+* @prime: treturn prime struct
 * @av: vector from main disagreement
 *
 * Return: 0 on success, 1 on error
 */
-int hsh(particular_t *info, char **av)
+int hsh(particular_t *prime, char **av)
 {
 ssize_t r = 0;
 int builtin_ret = 0;
 while (r != -1 && builtin_ret != -2)
 {
-clear_info(info);
-if (interactive_infor(info))
+clear_prime(prime);
+if (interactive_primer(prime))
 _puts("$ ");
 eputchar_chr(BUF_FLUSH);
-r = get_input(info);
+r = get_input(prime);
 if (r != -1)
 {
-set_info(info, av);
-builtin_ret = builtin_locator(info);
+set_prime(prime, av);
+builtin_ret = builtin_locator(prime);
 if (builtin_ret == -1)
-find_cmd(info);
+find_cmd(prime);
 }
-else if (interactive_infor(info))
+else if (interactive_primer(prime))
 putchar_char('\n');
-free_info(info, 0);
+free_prime(prime, 0);
 }
-history_writer(info);
-free_info(info, 1);
-if (!interactive_infor(info) && info->status)
-exit(info->status);
+history_writer(prime);
+free_prime(prime, 1);
+if (!interactive_primer(prime) && prime->status)
+exit(prime->status);
 if (builtin_ret == -2)
 {
-if (info->err_num == -1)
-exit(info->status);
-exit(info->err_num);
+if (prime->err_num == -1)
+exit(prime->status);
+exit(prime->err_num);
 }
 return (builtin_ret);
 }
 /**
 * builtin_locator - builtin command finder
 *
-* @info: parameter & info struct
+* @prime: parameter & prime struct
 *
 * Return: -1 if builtin not found,
 * 0 if builtin executed successfully,
 * 1 if builtin found but not successful,
 * 2 if builtin signals exit()
 */
-int builtin_locator(particular_t *info)
+int builtin_locator(particular_t *prime)
 {
 int i, built_in_ret = -1;
 builtin_table builtintbl[] = {
@@ -66,61 +66,61 @@ builtin_table builtintbl[] = {
 {NULL, NULL}
 };
 for (i = 0; builtintbl[i].type; i++)
-if (strcmp_char(info->argv[0], builtintbl[i].type) == 0)
+if (strcmp_char(prime->argv[0], builtintbl[i].type) == 0)
 {
-info->line_count++;
-built_in_ret = builtintbl[i].func(info);
+prime->line_count++;
+built_in_ret = builtintbl[i].func(prime);
 break;
 }
 return (built_in_ret);
 }
 /**
 * find_cmd - command in PATH finder
-* @info: the parameter index
+* @prime: the parameter index
 *
 * Return: void
 */
-void find_cmd(particular_t *info)
+void find_cmd(particular_t *prime)
 {
 char *path = NULL;
 int i, k;
-info->path = info->argv[0];
-if (info->linecount_flag == 1)
+prime->path = prime->argv[0];
+if (prime->linecount_flag == 1)
 {
-info->line_count++;
-info->linecount_flag = 0;
+prime->line_count++;
+prime->linecount_flag = 0;
 }
-for (i = 0, k = 0; info->arg[i]; i++)
-if (!delim_check(info->arg[i], " \t\n"))
+for (i = 0, k = 0; prime->arg[i]; i++)
+if (!delim_check(prime->arg[i], " \t\n"))
 k++;
 if (!k)
 return;
-path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+path = find_path(prime, _getenv(prime, "PATH="), prime->argv[0]);
 if (path)
 {
-info->path = path;
-fork_cmd(info);
+prime->path = path;
+fork_cmd(prime);
 }
 else
 {
-if ((interactive_infor(info) || _getenv(info, "PATH=")
-|| info->argv[0][0] == '/') && cmd_checker(info, info->argv[0]))
-fork_cmd(info);
-else if (*(info->arg) != '\n')
+if ((interactive_primer(prime) || _getenv(prime, "PATH=")
+|| prime->argv[0][0] == '/') && cmd_checker(prime, prime->argv[0]))
+fork_cmd(prime);
+else if (*(prime->arg) != '\n')
 {
-info->status = 127;
-print_error(info, "not found\n");
+prime->status = 127;
+print_error(prime, "not found\n");
 }
 }
 }
 /**
 * fork_cmd - thread to run cmd forker
 *
-* @info: the parameter
+* @prime: the parameter
 *
 * Return: void
 */
-void fork_cmd(particular_t *info)
+void fork_cmd(particular_t *prime)
 {
 pid_t child_pid;
 child_pid = fork();
@@ -132,9 +132,9 @@ return;
 }
 if (child_pid == 0)
 {
-if (execve(info->path, info->argv, get_environ(info)) == -1)
+if (execve(prime->path, prime->argv, get_environ(prime)) == -1)
 {
-free_info(info, 1);
+free_prime(prime, 1);
 if (errno == EACCES)
 exit(126);
 exit(1);
@@ -143,12 +143,12 @@ exit(1);
 }
 else
 {
-wait(&(info->status));
-if (WIFEXITED(info->status))
+wait(&(prime->status));
+if (WIFEXITED(prime->status))
 {
-info->status = WEXITSTATUS(info->status);
-if (info->status == 126)
-print_error(info, "Permission denied\n");
+prime->status = WEXITSTATUS(prime->status);
+if (prime->status == 126)
+print_error(prime, "Permission denied\n");
 }
 }
 }

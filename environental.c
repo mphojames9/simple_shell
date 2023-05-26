@@ -1,24 +1,24 @@
 #include "shell.h"
 /**
 * env_checker - gets the environment as at now
-* @info: format
+* @prime: format
 * Return: Always 0 if valid
 */
-int env_checker(particular_t *info)
+int env_checker(particular_t *prime)
 {
-print_list_str(info->env);
+print_list_str(prime->env);
 return (0);
 }
 /**
 * _getenv - value of an environmental variable is gotten
-* @info: format
+* @prime: format
 * @name: named environmental variable
 *
 * Return: the value as at when valid
 */
-char *_getenv(particular_t *info, const char *name)
+char *_getenv(particular_t *prime, const char *name)
 {
-record_m *node = info->env;
+record_m *node = prime->env;
 char *p;
 while (node)
 {
@@ -31,48 +31,48 @@ return (NULL);
 }
 /**
 * setenv_checker - get the environmental variable or change previous
-* @info: format
+* @prime: format
 * Return: Always 0 as at when valid
 */
-int setenv_checker(particular_t *info)
+int setenv_checker(particular_t *prime)
 {
-if (info->argc != 3)
+if (prime->argc != 3)
 {
 _eputs("Incorrect numberer of arguments\n");
 return (1);
 }
-if (setenv2_checker(info, info->argv[1], info->argv[2]))
+if (setenv2_checker(prime, prime->argv[1], prime->argv[2]))
 return (0);
 return (1);
 }
 /**
 * unsetenv_checker - deletes environment variable
-* @info: format
+* @prime: format
 * Return: Always 0 if valid
 */
-int unsetenv_checker(particular_t *info)
+int unsetenv_checker(particular_t *prime)
 {
 int i;
-if (info->argc == 1)
+if (prime->argc == 1)
 {
 _eputs("Too few arguements.\n");
 return (1);
 }
-for (i = 1; i <= info->argc; i++)
-unsetenv2_checker(info, info->argv[i]);
+for (i = 1; i <= prime->argc; i++)
+unsetenv2_checker(prime, prime->argv[i]);
 return (0);
 }
 /**
 * env_list_population - populates environmental linked-list
-* @info: format
+* @prime: format
 * Return: Always 0 if valid
 */
-int env_list_population(particular_t *info)
+int env_list_population(particular_t *prime)
 {
 record_m *node = NULL;
 size_t i;
 for (i = 0; environ[i]; i++)
 add_node_end(&node, environ[i], 0);
-info->env = node;
+prime->env = node;
 return (0);
 }

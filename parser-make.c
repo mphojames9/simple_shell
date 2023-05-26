@@ -2,15 +2,15 @@
 /**
 * cmd_checker - executable command is determined
 *
-* @info: information struct
+* @prime: primermation struct
 * @path: path to the file
 *
 * Return: 1 if true, 0 otherwise
 */
-int cmd_checker(particular_t *info, char *path)
+int cmd_checker(particular_t *prime, char *path)
 {
 struct stat st;
-(void)info;
+(void)prime;
 if (!path || stat(path, &st))
 return (0);
 if (st.st_mode & S_IFREG)
@@ -39,13 +39,13 @@ return (buf);
 }
 /**
 * find_path - cmd in the PATH string is found
-* @info: information struct
+* @prime: primermation struct
 * @pathstr: the string PATH
 * @cmd: find cmd
 *
 * Return: cmd if found or NULL
 */
-char *find_path(particular_t *info, char *pathstr, char *cmd)
+char *find_path(particular_t *prime, char *pathstr, char *cmd)
 {
 int i = 0, curr_pos = 0;
 char *path;
@@ -53,7 +53,7 @@ if (!pathstr)
 return (NULL);
 if ((strlen_char(cmd) > 2) && starts_with(cmd, "./"))
 {
-if (cmd_checker(info, cmd))
+if (cmd_checker(prime, cmd))
 return (cmd);
 }
 while (1)
@@ -68,7 +68,7 @@ else
 _strcat(path, "/");
 _strcat(path, cmd);
 }
-if (cmd_checker(info, path))
+if (cmd_checker(prime, path))
 return (path);
 if (!pathstr[i])
 break;

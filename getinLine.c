@@ -1,26 +1,26 @@
 #include "shell.h"
 /**
 * input_buf - buffered commanded chain
-* @info: format
+* @prime: format
 * @buf: buffer location
 * @len: address where the length variable stays
 *
 * Return: bytes read read
 */
-ssize_t input_buf(particular_t *info, char **buf, size_t *len)
+ssize_t input_buf(particular_t *prime, char **buf, size_t *len)
 {
 ssize_t r = 0;
 size_t len_p = 0;
 if (!*len)
 {
-/*befree((void **)info->cmd_buf);*/
+/*befree((void **)prime->cmd_buf);*/
 free(*buf);
 *buf = NULL;
 signal(SIGINT, sigintHandler);
 #if USEgetline_checker
 r = getline(buf, &len_p, stdin);
 #else
-r = getline_checker(info, buf, &len_p);
+r = getline_checker(prime, buf, &len_p);
 #endif
 if (r > 0)
 {
@@ -29,13 +29,13 @@ if ((*buf)[r - 1] == '\n')
 (*buf)[r - 1] = '\0'; /* remove trailing newline new */
 r--;
 }
-info->linecount_flag = 1;
+prime->linecount_flag = 1;
 remove_comments(*buf);
-history_list_builder(info, *buf, info->histcount++);
+history_list_builder(prime, *buf, prime->histcount++);
 /* if (_strchr(*buf, ';')) is this a command chain as is? */
 {
 *len = r;
-info->cmd_buf = buf;
+prime->cmd_buf = buf;
 }
 }
 }
@@ -43,28 +43,28 @@ return (r);
 }
 /**
 * get_input - brings a line subtracting the newline
-* @info: format
+* @prime: format
 *
 * Return: bytes read read
 */
-ssize_t get_input(particular_t *info)
+ssize_t get_input(particular_t *prime)
 {
 static char *buf; /* the ';' command chain chained buffer */
 static size_t i, j, len;
 ssize_t r = 0;
-char **buf_p = &(info->arg), *p;
+char **buf_p = &(prime->arg), *p;
 putchar_char(BUF_FLUSH);
-r = input_buf(info, &buf, &len);
+r = input_buf(prime, &buf, &len);
 if (r == -1) /* EOF */
 return (-1);
 if (len) /* we have commands as left in the chain buffer */
 {
 j = i; /* init new iterator to current buffered position */
 p = buf + i; /* get pointer pointing for return */
-check_chain(info, buf, &j, i, len);
+check_chain(prime, buf, &j, i, len);
 while (j < len) /* iterate to for semicolon or end */
 {
-if (chain_checker(info, buf, &j))
+if (chain_checker(prime, buf, &j))
 break;
 j++;
 }
@@ -72,7 +72,7 @@ i = j + 1; /* increment also past nulled ';'' */
 if (i >= len) /* reached the finishend of buffer? */
 {
 i = len = 0; /* reset positioned with and length */
-info->cmd_buf_type = CMD_NORM;
+prime->cmd_buf_type = CMD_NORM;
 }
 *buf_p = p; /* pass back pointer to current commanded form position */
 return (strlen_char(p)); /* return length figures for current command */
@@ -82,31 +82,31 @@ return (r); /* return length of buffered with from getline_checker() */
 }
 /**
 * read_buf - check buffer
-* @info: format
+* @prime: format
 * @buf: buffer buffered
 * @i: size sizee
 *
 * Return: r as valid
 */
-ssize_t read_buf(particular_t *info, char *buf, size_t *i)
+ssize_t read_buf(particular_t *prime, char *buf, size_t *i)
 {
 ssize_t r = 0;
 if (*i)
 return (0);
-r = read(info->readfd, buf, READ_BUF_SIZE);
+r = read(prime->readfd, buf, READ_BUF_SIZE);
 if (r >= 0)
 *i = r;
 return (r);
 }
 /**
 * getline_checker - gets the next line of input from STanDardINput
-* @info:format
+* @prime:format
 * @ptr: address of pointer pointing to buffer preallocated and/or NULLified
 * @length: size of preallocated pointer buffered if not NULLified
 *
 * Return: s as valid
 */
-int getline_checker(particular_t *info, char **ptr, size_t *length)
+int getline_checker(particular_t *prime, char **ptr, size_t *length)
 {
 static char buf[READ_BUF_SIZE];
 static size_t i, len;
@@ -118,7 +118,7 @@ if (p && length)
 s = *length;
 if (i == len)
 i = len = 0;
-r = read_buf(info, buf, &len);
+r = read_buf(prime, buf, &len);
 if (r == -1 || (r == 0 && len == 0))
 return (-1);
 c = _strchr(buf + i, '\n');

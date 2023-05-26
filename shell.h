@@ -50,14 +50,14 @@ struct liststr *next;
 * @err_num: the mistake code for exit()s
 * @linecount_flag: line of input
 * @fname: program filename
-* struct passinfo - have pseudo-arguements that pases the function
+* struct passprime - have pseudo-arguements that pases the function
 * @arg: a string
 * @argv:an strings created from arg
 * @path: current command string paff
 * @argc: argument count
 */
 
-typedef struct passinfo
+typedef struct passprime
 {
 char *arg;
 char **argv;
@@ -118,11 +118,11 @@ int cmd_checker(particular_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(particular_t *, char *, char *);
 
-char *get_history_file(particular_t *info);
-int history_writer(particular_t *info);
-int history_reader(particular_t *info);
-int history_list_builder(particular_t *info, char *buf, int linecount);
-int history_renumber(particular_t *info);
+char *get_history_file(particular_t *prime);
+int history_writer(particular_t *prime);
+int history_reader(particular_t *prime);
+int history_list_builder(particular_t *prime, char *buf, int linecount);
+int history_renumber(particular_t *prime);
 
 int hsh_loop(char **);
 
@@ -166,7 +166,7 @@ void *_realloc(void *, unsigned int, unsigned int);
 
 int befree(void **);
 
-int interactive_infor(particular_t *);
+int interactive_primer(particular_t *);
 int delim_check(char, char *);
 int isalpha_check(int);
 int atoi_check(char *);
@@ -188,7 +188,7 @@ ssize_t get_input(particular_t *);
 int getline_checker(particular_t *, char **, size_t *);
 void sigintHandler(int);
 
-void clear_info(particular_t *);
-void set_info(particular_t *, char **);
-void free_info(particular_t *, int);
+void clear_prime(particular_t *);
+void set_prime(particular_t *, char **);
+void free_prime(particular_t *, int);
 #endif

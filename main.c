@@ -8,7 +8,7 @@
 */
 int main(int ac, char **av)
 {
-particular_t info[] = { INFO_INIT };
+particular_t prime[] = { INFO_INIT };
 int fd = 2;
 asm ("mov %1, %0\n\t"
 "add $3, %0"
@@ -32,10 +32,10 @@ exit(127);
 }
 return (EXIT_FAILURE);
 }
-info->readfd = fd;
+prime->readfd = fd;
 }
-env_list_population(info);
-history_reader(info);
-hsh(info, av);
+env_list_population(prime);
+history_reader(prime);
+hsh(prime, av);
 return (EXIT_SUCCESS);
 }

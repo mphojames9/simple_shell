@@ -1,27 +1,27 @@
 #include "shell.h"
 /**
 * get_environ - environmental array getting
-* @info: format
+* @prime: format
 * Return: Always 0
 */
-char **get_environ(particular_t *info)
+char **get_environ(particular_t *prime)
 {
-if (!info->environ || info->env_changed)
+if (!prime->environ || prime->env_changed)
 {
-info->environ = record_mo_strings(info->env);
-info->env_changed = 0;
+prime->environ = record_mo_strings(prime->env);
+prime->env_changed = 0;
 }
-return (info->environ);
+return (prime->environ);
 }
 /**
 * unsetenv2_checker - deletes environment variable
-* @info: format
+* @prime: format
 * Return: 1 on sure delete, if not 0
 * @var: environmental variable stringed property
 */
-int unsetenv2_checker(particular_t *info, char *var)
+int unsetenv2_checker(particular_t *prime, char *var)
 {
-record_m *node = info->env;
+record_m *node = prime->env;
 size_t i = 0;
 char *p;
 if (!node || !var)
@@ -31,24 +31,24 @@ while (node)
 p = starts_with(node->str, var);
 if (p && *p == '=')
 {
-info->env_changed = node_at_index_deletion(&(info->env), i);
+prime->env_changed = node_at_index_deletion(&(prime->env), i);
 i = 0;
-node = info->env;
+node = prime->env;
 continue;
 }
 node = node->next;
 i++;
 }
-return (info->env_changed);
+return (prime->env_changed);
 }
 /**
 * setenv2_checker - start a new variable or change previous
-* @info: format
+* @prime: format
 * @var: environmental variable stringed property
 * @value: environmental variable stringed value
 * Return: Always if true and valid 0
 */
-int setenv2_checker(particular_t *info, char *var, char *value)
+int setenv2_checker(particular_t *prime, char *var, char *value)
 {
 char *buf = NULL;
 record_m *node;
@@ -61,7 +61,7 @@ return (1);
 _strcpy(buf, var);
 _strcat(buf, "=");
 _strcat(buf, value);
-node = info->env;
+node = prime->env;
 while (node)
 {
 p = starts_with(node->str, var);
@@ -69,13 +69,13 @@ if (p && *p == '=')
 {
 free(node->str);
 node->str = buf;
-info->env_changed = 1;
+prime->env_changed = 1;
 return (0);
 }
 node = node->next;
 }
-add_node_end(&(info->env), buf, 0);
+add_node_end(&(prime->env), buf, 0);
 free(buf);
-info->env_changed = 1;
+prime->env_changed = 1;
 return (0);
 }
