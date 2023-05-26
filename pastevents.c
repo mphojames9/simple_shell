@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-* get_history_file - locates the past files
+* get_history_file - locates the pastt files
 * @prime: format structure
 *
 * Return: string with the past event file
