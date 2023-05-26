@@ -112,7 +112,7 @@ return (0);
 }
 /**
 * history_renumberber - give the pastevent linked list new numberbers when changed
-* @prime: Structure containing potential arguments. Used to maintainwith possible clash
+* @prime: Structure with possible clash
 *
 * Return: the current pastevent count
 */
