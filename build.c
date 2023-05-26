@@ -36,12 +36,12 @@ char *s, *dir, buffer[1024];
 int chdir_ret;
 s = getcwd(buffer, 1024);
 if (!s)
-_puts("TODO: >>getcwd failure-msg here<<\n");
+_puts("TO_DO: >>getcwd failure-msg here<<\n");
 if (!prime->argv[1])
 {
 dir = _getenv(prime, "HOME=");
 if (!dir)
-chdir_ret = /* TODO: what should this as refer be? */
+chdir_ret =
 chdir((dir = _getenv(prime, "PWD=")) ? dir : "/");
 else
 chdir_ret = chdir(dir);
@@ -55,7 +55,7 @@ putchar_char('\n');
 return (1);
 }
 _puts(_getenv(prime, "OLDPWD=")), putchar_char('\n');
-chdir_ret = /* TODO: what should this be? */
+chdir_ret =
 chdir((dir = _getenv(prime, "OLDPWD=")) ? dir : "/");
 }
 else
