@@ -10,7 +10,7 @@ int erratoi_check(char *s)
 int i = 0;
 unsigned long int result = 0;
 if (*s == '+')
-s++; /* TODO: why does this make main main return 255? */
+s++;
 for (i = 0; s[i] != '\0'; i++)
 {
 if (s[i] >= '0' && s[i] <= '9')
@@ -111,7 +111,7 @@ if (sign)
 return (ptr);
 }
 /**
-* remove_comments - this function replaces the first instance of '#' with '\0'
+* remove_comments - this function replaces the first instance occurence of '#' with '\0'
 * @buf: address of the string for modification
 *
 * Return: Always 0 when valid;
