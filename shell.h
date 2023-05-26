@@ -30,7 +30,7 @@ extern char **environ;
 */
 typedef struct liststr
 {
-int num;
+int number;
 char *str;
 struct liststr *next;
 } record_m;
@@ -47,7 +47,7 @@ struct liststr *next;
 * @readfd: read line input
 * @histcount: history line num count
 * @line_count: mistake count
-* @err_num: the mistake code for exit()s
+* @err_number: the mistake code for exit()s
 * @linecount_flag: line of input
 * @fname: program filename
 * struct passprime - have pseudo-arguements that pases the function
@@ -64,7 +64,7 @@ char **argv;
 char *path;
 int argc;
 unsigned int line_count;
-int err_num;
+int err_number;
 int linecount_flag;
 char *fname;
 record_m *env;

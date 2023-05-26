@@ -89,7 +89,7 @@ free(buf);
 prime->histcount = linecount;
 while (prime->histcount-- >= HIST_MAX)
 node_at_index_deletion(&(prime->history), 0);
-history_renumberber(prime);
+history_renumber(prime);
 return (prime->histcount);
 }
 /**
@@ -116,7 +116,7 @@ return (0);
 *
 * Return: the current pastevent count
 */
-int history_renumberber(particular_t *prime)
+int history_renumber(particular_t *prime)
 {
 record_m *node = prime->history;
 int i = 0;
