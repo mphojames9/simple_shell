@@ -62,20 +62,20 @@ typedef struct passprime
 char *arg;
 char **argv;
 char *alley;
-int argc;
-unsigned int rule_count;
-int err_number;
-int rulecount_flag;
 char *fname;
-record_m *env;
-record_m *history;
-record_m *alias;
 char **environ;
 int env_changed;
 int status;
 char **cmd_buf;
 int cmd_buf_type;
 int readfd;
+record_m *env;
+record_m *history;
+int argc;
+unsigned int rule_count;
+int err_number;
+int rulecount_flag;
+record_m *alias;
 int histcount;
 } particular_t;
 #define INFO_INIT \
