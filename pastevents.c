@@ -89,7 +89,7 @@ free(buf);
 prime->histcount = linecount;
 while (prime->histcount-- >= HIST_MAX)
 node_at_index_deletion(&(prime->history), 0);
-history_renumber(prime);
+history_renumberber(prime);
 return (prime->histcount);
 }
 /**
@@ -111,18 +111,18 @@ prime->history = node;
 return (0);
 }
 /**
-* history_renumber - give the pastevent linked list new numbers when changed
+* history_renumberber - give the pastevent linked list new numberbers when changed
 * @prime: Structure containing potential arguments. Used to maintainwith possible clash
 *
 * Return: the current pastevent count
 */
-int history_renumber(particular_t *prime)
+int history_renumberber(particular_t *prime)
 {
 record_m *node = prime->history;
 int i = 0;
 while (node)
 {
-node->num = i++;
+node->number = i++;
 node = node->next;
 }
 return (prime->histcount = i);

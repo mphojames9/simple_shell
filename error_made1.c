@@ -80,22 +80,22 @@ return (count);
 }
 /**
 * convert_number - converterting function
-* @num: number-
+* @number: number-
 * @base: base-
 * @flags: argument flags-
 *
 * Return: string str-
 */
-char *convert_number(long int num, int base, int flags)
+char *convert_number(long int number, int base, int flags)
 {
 static char *array;
 static char buffer[50];
 char sign = 0;
 char *ptr;
-unsigned long n = num;
-if (!(flags & CONVERT_UNSIGNED) && num < 0)
+unsigned long n = number;
+if (!(flags & CONVERT_UNSIGNED) && number < 0)
 {
-n = -num;
+n = -number;
 sign = '-';
 }
 array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" :

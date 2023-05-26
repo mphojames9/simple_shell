@@ -19,10 +19,10 @@ _eputs(prime->argv[1]);
 eputchar_chr('\n');
 return (1);
 }
-prime->err_num = erratoi_check(prime->argv[1]);
+prime->err_number = erratoi_check(prime->argv[1]);
 return (-2);
 }
-prime->err_num = -1;
+prime->err_number = -1;
 return (-2);
 }
 /**

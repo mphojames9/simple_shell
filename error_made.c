@@ -61,7 +61,7 @@ return (1);
 * @str: to be printed stringed
 * @fd: file-descriptor to write into
 *
-* Return: nums of characters put
+* Return: numbers of characters put
 */
 int putsfd_char(char *str, int fd)
 {

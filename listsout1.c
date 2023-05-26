@@ -62,7 +62,7 @@ size_t print_list(const record_m *h)
 size_t i = 0;
 while (h)
 {
-_puts(convert_number(h->num, 10, 0));
+_puts(convert_number(h->number, 10, 0));
 putchar_char(':');
 putchar_char(' ');
 _puts(h->str ? h->str : "(nil)");

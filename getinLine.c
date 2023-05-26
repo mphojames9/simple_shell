@@ -140,11 +140,11 @@ return (s);
 }
 /**
 * sigintHandler - blocks ctrl-C
-* @sig_num: the signal number
+* @sig_number: the signal number
 *
 * Return: void
 */
-void sigintHandler(__attribute__((unused))int sig_num)
+void sigintHandler(__attribute__((unused))int sig_number)
 {
 _puts("\n");
 _puts("$ ");

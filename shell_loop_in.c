@@ -35,9 +35,9 @@ if (!interactive_primer(prime) && prime->status)
 exit(prime->status);
 if (builtin_ret == -2)
 {
-if (prime->err_num == -1)
+if (prime->err_number == -1)
 exit(prime->status);
-exit(prime->err_num);
+exit(prime->err_number);
 }
 return (builtin_ret);
 }

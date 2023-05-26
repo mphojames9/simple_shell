@@ -3,11 +3,11 @@
 * add_node - node to the start of the list is added
 * @head: address of pointer to head node
 * @str: field of node srt
-* @num: node index 
+* @number: node index 
 *
 * Return: size of list
 */
-record_m *add_node(record_m **head, const char *str, int num)
+record_m *add_node(record_m **head, const char *str, int number)
 {
 record_m *new_head;
 if (!head)
@@ -16,7 +16,7 @@ new_head = malloc(sizeof(record_m));
 if (!new_head)
 return (NULL);
 _memset((void *)new_head, 0, sizeof(record_m));
-new_head->num = num;
+new_head->number = number;
 if (str)
 {
 new_head->str = _strdup(str);
@@ -34,11 +34,11 @@ return (new_head);
 * add_node_end - adds a node to the end of the list
 * @head: address of pointer to head node
 * @str: str field of node
-* @num: node index used by history
+* @number: node index used by history
 *
 * Return: size of list
 */
-record_m *add_node_end(record_m **head, const char *str, int num)
+record_m *add_node_end(record_m **head, const char *str, int number)
 {
 record_m *new_node, *node;
 if (!head)
@@ -48,7 +48,7 @@ new_node = malloc(sizeof(record_m));
 if (!new_node)
 return (NULL);
 _memset((void *)new_node, 0, sizeof(record_m));
-new_node->num = num;
+new_node->number = number;
 if (str)
 {
 new_node->str = _strdup(str);
