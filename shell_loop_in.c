@@ -82,9 +82,9 @@ return (built_in_ret);
 */
 void find_cmd(particular_t *prime)
 {
-char *path = NULL;
+char *alley = NULL;
 int i, k;
-prime->path = prime->argv[0];
+prime->alley = prime->argv[0];
 if (prime->rulecount_flag == 1)
 {
 prime->rule_count++;
@@ -95,10 +95,10 @@ if (!delim_check(prime->arg[i], " \t\n"))
 k++;
 if (!k)
 return;
-path = find_path(prime, _getenv(prime, "PATH="), prime->argv[0]);
-if (path)
+alley = find_alley(prime, _getenv(prime, "PATH="), prime->argv[0]);
+if (alley)
 {
-prime->path = path;
+prime->alley = alley;
 fork_cmd(prime);
 }
 else
@@ -132,7 +132,7 @@ return;
 }
 if (child_pid == 0)
 {
-if (execve(prime->path, prime->argv, get_environ(prime)) == -1)
+if (execve(prime->alley, prime->argv, get_environ(prime)) == -1)
 {
 free_prime(prime, 1);
 if (errno == EACCES)

@@ -3,15 +3,15 @@
 * cmd_checker - executable command is determined
 *
 * @prime: primermation struct
-* @path: path to the file
+* @alley: alley to the file
 *
 * Return: 1 if true, 0 otherwise
 */
-int cmd_checker(particular_t *prime, char *path)
+int cmd_checker(particular_t *prime, char *alley)
 {
 struct stat st;
 (void)prime;
-if (!path || stat(path, &st))
+if (!alley || stat(alley, &st))
 return (0);
 if (st.st_mode & S_IFREG)
 {
@@ -21,35 +21,35 @@ return (0);
 }
 /**
 * dup_chars - characters are duplicated
-* @pathstr: PATH string
+* @alleystr: PATH string
 * @start: index starting point
 * @stop: index stoping
 *
 * Return: new buffer pointer
 */
-char *dup_chars(char *pathstr, int start, int stop)
+char *dup_chars(char *alleystr, int start, int stop)
 {
 static char buf[1024];
 int i = 0, k = 0;
 for (k = 0, i = start; i < stop; i++)
-if (pathstr[i] != ':')
-buf[k++] = pathstr[i];
+if (alleystr[i] != ':')
+buf[k++] = alleystr[i];
 buf[k] = 0;
 return (buf);
 }
 /**
-* find_path - cmd in the PATH string is found
+* find_alley - cmd in the PATH string is found
 * @prime: primermation struct
-* @pathstr: the string PATH
+* @alleystr: the string PATH
 * @cmd: find cmd
 *
 * Return: cmd if found or NULL
 */
-char *find_path(particular_t *prime, char *pathstr, char *cmd)
+char *find_alley(particular_t *prime, char *alleystr, char *cmd)
 {
 int i = 0, curr_pos = 0;
-char *path;
-if (!pathstr)
+char *alley;
+if (!alleystr)
 return (NULL);
 if ((strlen_char(cmd) > 2) && starts_with(cmd, "./"))
 {
@@ -58,19 +58,19 @@ return (cmd);
 }
 while (1)
 {
-if (!pathstr[i] || pathstr[i] == ':')
+if (!alleystr[i] || alleystr[i] == ':')
 {
-path = dup_chars(pathstr, curr_pos, i);
-if (!*path)
-_strcat(path, cmd);
+alley = dup_chars(alleystr, curr_pos, i);
+if (!*alley)
+_strcat(alley, cmd);
 else
 {
-_strcat(path, "/");
-_strcat(path, cmd);
+_strcat(alley, "/");
+_strcat(alley, cmd);
 }
-if (cmd_checker(prime, path))
-return (path);
-if (!pathstr[i])
+if (cmd_checker(prime, alley))
+return (alley);
+if (!alleystr[i])
 break;
 curr_pos = i;
 }

@@ -7,7 +7,7 @@ void clear_prime(particular_t *prime)
 {
 prime->arg = NULL;
 prime->argv = NULL;
-prime->path = NULL;
+prime->alley = NULL;
 prime->argc = 0;
 }
 /**
@@ -47,7 +47,7 @@ void free_prime(particular_t *prime, int all)
 {
 ffree(prime->argv);
 prime->argv = NULL;
-prime->path = NULL;
+prime->alley = NULL;
 if (all)
 {
 if (!prime->cmd_buf)

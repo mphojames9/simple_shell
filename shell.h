@@ -53,7 +53,7 @@ struct liststr *next;
 * struct passprime - have pseudo-arguements that pases the function
 * @arg: a string
 * @argv:an strings created from arg
-* @path: current command string paff
+* @alley: current command string paff
 * @argc: argument count
 */
 
@@ -61,7 +61,7 @@ typedef struct passprime
 {
 char *arg;
 char **argv;
-char *path;
+char *alley;
 int argc;
 unsigned int rule_count;
 int err_number;
@@ -116,7 +116,7 @@ int setenv2_checker(particular_t *, char *, char *);
 
 int cmd_checker(particular_t *, char *);
 char *dup_chars(char *, int, int);
-char *find_path(particular_t *, char *, char *);
+char *find_alley(particular_t *, char *, char *);
 
 char *get_history_file(particular_t *prime);
 int history_writer(particular_t *prime);
