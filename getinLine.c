@@ -32,7 +32,7 @@ r--;
 prime->rulecount_flag = 1;
 remove_comments(*buf);
 history_list_builder(prime, *buf, prime->histcount++);
-/* if (_strchr(*buf, ';')) is this a command chain as is? */
+
 {
 *len = r;
 prime->cmd_buf = buf;
@@ -49,7 +49,7 @@ return (r);
 */
 ssize_t get_input(particular_t *prime)
 {
-static char *buf; /* the ';' command chain chained buffer */
+static char *buf;
 static size_t i, j, len;
 ssize_t r = 0;
 char **buf_p = &(prime->arg), *p;
@@ -57,28 +57,28 @@ putchar_char(BUF_FLUSH);
 r = input_buf(prime, &buf, &len);
 if (r == -1) /* EOF */
 return (-1);
-if (len) /* we have commands as left in the chain buffer */
+if (len)
 {
-j = i; /* init new iterator to current buffered position */
+j = i;
 p = buf + i; /* get pointer pointing for return */
 check_chain(prime, buf, &j, i, len);
-while (j < len) /* iterate to for semicolon or end */
+while (j < len)
 {
 if (chain_checker(prime, buf, &j))
 break;
 j++;
 }
-i = j + 1; /* increment also past nulled ';'' */
-if (i >= len) /* reached the finishend of buffer? */
+i = j + 1;
+if (i >= len)
 {
-i = len = 0; /* reset positioned with and length */
+i = len = 0;
 prime->cmd_buf_type = CMD_NORM;
 }
-*buf_p = p; /* pass back pointer to current commanded form position */
-return (strlen_char(p)); /* return length figures for current command */
+*buf_p = p;
+return (strlen_char(p));
 }
-*buf_p = buf; /* else not a chain, pass back buffer with the from getrule_checker() */
-return (r); /* return length of buffered with from getrule_checker() */
+*buf_p = buf;
+return (r);
 }
 /**
 * read_buf - check buffer
