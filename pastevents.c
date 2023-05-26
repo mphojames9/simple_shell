@@ -54,7 +54,7 @@ return (1);
 */
 int history_reader(particular_t *prime)
 {
-int i, last = 0, rulecount = 0;
+int in, last = 0, rulecount = 0;
 ssize_t fd, rdlen, fsize = 0;
 struct stat st;
 char *buf = NULL, *filename = get_history_file(prime);
@@ -76,14 +76,14 @@ buf[fsize] = 0;
 if (rdlen <= 0)
 return (free(buf), 0);
 close(fd);
-for (i = 0; i < fsize; i++)
-if (buf[i] == '\n')
+for (in = 0; in < fsize; in++)
+if (buf[in] == '\n')
 {
-buf[i] = 0;
+buf[in] = 0;
 history_list_builder(prime, buf + last, rulecount++);
-last = i + 1;
+last = in + 1;
 }
-if (last != i)
+if (last != in)
 history_list_builder(prime, buf + last, rulecount++);
 free(buf);
 prime->histcount = rulecount;
@@ -111,7 +111,7 @@ prime->history = node;
 return (0);
 }
 /**
-* history_renumberber - give the pastevent linked list new numberbers when changed
+* history_renumber - give the pastevent linked list new numbers when changed
 * @prime: Structure containing potential arguments. Used to maintainwith possible clash
 *
 * Return: the current pastevent count
@@ -119,11 +119,11 @@ return (0);
 int history_renumber(particular_t *prime)
 {
 record_m *node = prime->history;
-int i = 0;
+int in = 0;
 while (node)
 {
-node->number = i++;
+node->number = in++;
 node = node->next;
 }
-return (prime->histcount = i);
+return (prime->histcount = in);
 }
