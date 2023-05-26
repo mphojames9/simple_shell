@@ -36,7 +36,7 @@ void print_error(particular_t *prime, char *estr)
 {
 _eputs(prime->fname);
 _eputs(": ");
-printing_d(prime->line_count, STDERR_FILENO);
+printing_d(prime->rule_count, STDERR_FILENO);
 _eputs(": ");
 _eputs(prime->argv[0]);
 _eputs(": ");

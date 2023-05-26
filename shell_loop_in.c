@@ -68,7 +68,7 @@ builtin_table builtintbl[] = {
 for (i = 0; builtintbl[i].type; i++)
 if (strcmp_char(prime->argv[0], builtintbl[i].type) == 0)
 {
-prime->line_count++;
+prime->rule_count++;
 built_in_ret = builtintbl[i].func(prime);
 break;
 }
@@ -85,10 +85,10 @@ void find_cmd(particular_t *prime)
 char *path = NULL;
 int i, k;
 prime->path = prime->argv[0];
-if (prime->linecount_flag == 1)
+if (prime->rulecount_flag == 1)
 {
-prime->line_count++;
-prime->linecount_flag = 0;
+prime->rule_count++;
+prime->rulecount_flag = 0;
 }
 for (i = 0, k = 0; prime->arg[i]; i++)
 if (!delim_check(prime->arg[i], " \t\n"))

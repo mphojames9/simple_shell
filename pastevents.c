@@ -54,7 +54,7 @@ return (1);
 */
 int history_reader(particular_t *prime)
 {
-int i, last = 0, linecount = 0;
+int i, last = 0, rulecount = 0;
 ssize_t fd, rdlen, fsize = 0;
 struct stat st;
 char *buf = NULL, *filename = get_history_file(prime);
@@ -80,13 +80,13 @@ for (i = 0; i < fsize; i++)
 if (buf[i] == '\n')
 {
 buf[i] = 0;
-history_list_builder(prime, buf + last, linecount++);
+history_list_builder(prime, buf + last, rulecount++);
 last = i + 1;
 }
 if (last != i)
-history_list_builder(prime, buf + last, linecount++);
+history_list_builder(prime, buf + last, rulecount++);
 free(buf);
-prime->histcount = linecount;
+prime->histcount = rulecount;
 while (prime->histcount-- >= HIST_MAX)
 node_at_index_deletion(&(prime->history), 0);
 history_renumber(prime);
@@ -96,16 +96,16 @@ return (prime->histcount);
 * history_list_builder - additional to a pastevent linked list
 * @prime: Structure with possible clash
 * @buf: buffer buffer
-* @linecount: pastevent line-count
+* @rulecount: pastevent rule-count
 *
 * Return: Always 0
 */
-int history_list_builder(particular_t *prime, char *buf, int linecount)
+int history_list_builder(particular_t *prime, char *buf, int rulecount)
 {
 record_m *node = NULL;
 if (prime->history)
 node = prime->history;
-add_node_end(&node, buf, linecount);
+add_node_end(&node, buf, rulecount);
 if (!prime->history)
 prime->history = node;
 return (0);

@@ -17,19 +17,19 @@ if (!*len)
 free(*buf);
 *buf = NULL;
 signal(SIGINT, sigintHandler);
-#if USEgetline_checker
-r = getline(buf, &len_p, stdin);
+#if USEgetrule_checker
+r = getrule(buf, &len_p, stdin);
 #else
-r = getline_checker(prime, buf, &len_p);
+r = getrule_checker(prime, buf, &len_p);
 #endif
 if (r > 0)
 {
 if ((*buf)[r - 1] == '\n')
 {
-(*buf)[r - 1] = '\0'; /* remove trailing newline new */
+(*buf)[r - 1] = '\0'; /* remove trailing newrule new */
 r--;
 }
-prime->linecount_flag = 1;
+prime->rulecount_flag = 1;
 remove_comments(*buf);
 history_list_builder(prime, *buf, prime->histcount++);
 /* if (_strchr(*buf, ';')) is this a command chain as is? */
@@ -42,7 +42,7 @@ prime->cmd_buf = buf;
 return (r);
 }
 /**
-* get_input - brings a line subtracting the newline
+* get_input - brings a rule subtracting the newrule
 * @prime: format
 *
 * Return: bytes read read
@@ -77,8 +77,8 @@ prime->cmd_buf_type = CMD_NORM;
 *buf_p = p; /* pass back pointer to current commanded form position */
 return (strlen_char(p)); /* return length figures for current command */
 }
-*buf_p = buf; /* else not a chain, pass back buffer with the from getline_checker() */
-return (r); /* return length of buffered with from getline_checker() */
+*buf_p = buf; /* else not a chain, pass back buffer with the from getrule_checker() */
+return (r); /* return length of buffered with from getrule_checker() */
 }
 /**
 * read_buf - check buffer
@@ -99,14 +99,14 @@ if (r >= 0)
 return (r);
 }
 /**
-* getline_checker - gets the next line of input from STanDardINput
+* getrule_checker - gets the next rule of input from STanDardINput
 * @prime:format
 * @ptr: address of pointer pointing to buffer preallocated and/or NULLified
 * @length: size of preallocated pointer buffered if not NULLified
 *
 * Return: s as valid
 */
-int getline_checker(particular_t *prime, char **ptr, size_t *length)
+int getrule_checker(particular_t *prime, char **ptr, size_t *length)
 {
 static char buf[READ_BUF_SIZE];
 static size_t i, len;

@@ -16,7 +16,7 @@
 #define CMD_CHAIN 3
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
-#define USEgetline_checker 0
+#define USEgetrule_checker 0
 #define USE_STRTOK 0
 #define HIST_FILE ".simple_shell_history"
 #define HIST_MAX 4096
@@ -44,11 +44,11 @@ struct liststr *next;
 * @status:last exec'd command return status
 * @cmd_buf: cmd_buf, on if chaining address of pointer
 * @cmd_buf_type: CMD_type ||, &&, ;
-* @readfd: read line input
-* @histcount: history line num count
-* @line_count: mistake count
+* @readfd: read rule input
+* @histcount: history rule num count
+* @rule_count: mistake count
 * @err_number: the mistake code for exit()s
-* @linecount_flag: line of input
+* @rulecount_flag: rule of input
 * @fname: program filename
 * struct passprime - have pseudo-arguements that pases the function
 * @arg: a string
@@ -63,9 +63,9 @@ char *arg;
 char **argv;
 char *path;
 int argc;
-unsigned int line_count;
+unsigned int rule_count;
 int err_number;
-int linecount_flag;
+int rulecount_flag;
 char *fname;
 record_m *env;
 record_m *history;
@@ -121,7 +121,7 @@ char *find_path(particular_t *, char *, char *);
 char *get_history_file(particular_t *prime);
 int history_writer(particular_t *prime);
 int history_reader(particular_t *prime);
-int history_list_builder(particular_t *prime, char *buf, int linecount);
+int history_list_builder(particular_t *prime, char *buf, int rulecount);
 int history_renumber(particular_t *prime);
 
 int hsh_loop(char **);
@@ -185,7 +185,7 @@ int history_checker(particular_t *);
 int alias_checker(particular_t *);
 
 ssize_t get_input(particular_t *);
-int getline_checker(particular_t *, char **, size_t *);
+int getrule_checker(particular_t *, char **, size_t *);
 void sigintHandler(int);
 
 void clear_prime(particular_t *);
