@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
 * _myevacuate - leaves shell
-* @prime: Structure with possible clash
+* @prime: Structure with possible clashh
 * Return: exit as an exited stat
 * (0) if prime.argv[0] != "exit"
 */
